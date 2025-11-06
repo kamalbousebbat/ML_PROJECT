@@ -1,0 +1,30 @@
+{% load static %}
+{% include "./includes/header.html" %}
+
+    
+        
+    <div class="container">
+        <h2 class="mb-4">Les Algorithmes</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <h5 class="card-header">Algorithme Régression Logistique</h5>
+                    <div class="card-body">
+                        <img src="{% static 'images/regression_logistique.jpg' %}" class="card-img-top" alt="Régression Logistique">
+                        <div class="card-text mt-3">
+                            <p>
+                                L'algorithme Régression Logistique est un algorithme d'apprentissage suppervisé de classification
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer center">
+                        <a class="btn btn-info col-12 mt-2" href="{% url 'reglog_details' %}">Plus détails</a>
+                        <a class="btn btn-success col-12 mt-2" href="{% url 'reglog_atelier' %}">Exemple de Classification</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+{% include "./includes/footer.html" %}

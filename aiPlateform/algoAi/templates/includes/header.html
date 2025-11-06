@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Platform - Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            
+            <a class="navbar-brand fs-2 d-flex align-items-center" href="/">
+                <img class="rounded-2 m-2" src="{% static '/images/Gemini_Generated_Image_61nd4f61nd4f61nd.png' %}" alt=""width="35" height="35" >
+                AI Platform
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-dark nav-link active m-1" href="/">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-dark m-1" href="#">À propos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+

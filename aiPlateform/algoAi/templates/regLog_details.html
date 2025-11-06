@@ -1,0 +1,43 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-4">Algorithme de Régression Logistique</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Détails :</h3>
+            <p>
+                La régression logistique est un modèle de classification supervisée 
+                qui utilise une fonction logistique (ou sigmoïde) pour modéliser 
+                la probabilité qu'une observation appartienne à une classe particulière.
+            </p>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Caractéristiques :</h3>
+            <ul>
+                <li>Sortie Probabiliste</li>
+                <li>Seuil de Décision (0.5)</li>
+                <li>Simplicité et Efficacité</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <iframe 
+            src="{% static 'pdfs/chapitre5.pdf' %}" 
+            width="100%" 
+            height="600px" 
+            style="border:1px solid #ccc;">
+        </iframe>
+
+        <p>
+            Ce navigateur ne supporte pas les PDFs. 
+            Veuillez le télécharger :
+            <a href="{% static 'pdfs/chapitre5.pdf' %}">Télécharger le PDF</a>
+        </p>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}

@@ -1,0 +1,36 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-4">Atelier Pratique - Classification des véhicules</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Dataset des véhicules</h3>
+            <p>
+                L’objectif de cette démonstration est de vous montrer comment on entraine un modèle de régression logistique
+                pour classifier les véhicules en Camion ou Touristique selon le nombre de roues et la hauteur donnée.
+            </p>
+            <p>
+                Les modèles entraînés et sauvegardés de cet atelier vont être utilisés pour faire des classifications à
+                base de données qui vont être saisies par l’utilisateur de l’application via un formulaire une fois
+                qu’il clique sur le bouton “Tester le modèle”.
+            </p>
+
+            <a class="btn btn-success col-12 mt-2 mb-2" href="{% url 'reglog_tester' %}">Tester le modèle</a>
+        </div>
+
+        <div class="col-md-6">
+            <img src="{% static 'images/camion.jpg' %}" width="40%">
+            <img src="{% static 'images/touristique.jpg' %}" width="40%">
+        </div>
+    </div>
+
+    <iframe src="{% static 'pdfs/course_demonstration.pdf' %}" width="100%" height="600px"
+        style="border: 1px solid #ddd;">
+        Ce navigateur ne supporte pas les PDFs. Veuillez le télécharger :
+        <a href="{% static 'pdfs/course_demonstration.pdf' %}">Télécharger PDF</a>
+    </iframe>
+</div>
+
+{% include "includes/footer.html" %}

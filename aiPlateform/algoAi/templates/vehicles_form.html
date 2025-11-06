@@ -1,0 +1,63 @@
+{% include "includes/header.html" %}
+{% load static %}
+<div class="container">
+    <h2>Les caractéristique de la véhicule</h2>
+    <div class="ps-2 card">
+        <div class="card-title d-flex justify-content-between">
+            <img src="{% static 'images/camion.jpg' %}" width="32%">
+            <img src="{% static 'images/touristique.jpg' %}" width="32%">
+            <img src="{% static 'images/camion.jpg' %}" width="32%">
+        </div>
+        <div class="card-body ">
+            <form method="post" action="{% url 'reglog_prediction' %}" class="ps-4 pe-4 pt-4 pb-4">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="hauteur" class="form-label">Hauteur (m)</label>
+                    <input type="range" class="form-range" min="2" max="5.5" step="0.1" id="hauteur" name="hauteur"
+                           value="3" oninput="hauteurValue.value=this.value">
+                    <span class="slider-value" id="hauteurValue">3.0</span>
+                </div>
+                <div class="mb-4">
+                    <label for="Nombre_de_roues" class="form-label">Nombre de roues</label>
+                    <input type="range" class="form-range" min="4" max="18" step="2" id="Nombre_de_roues"
+                           name="Nombre_de_roues" value="4" oninput="Nombre_de_rouesValue.value=this.value">
+                    <span id="Nombre_de_rouesValue">4</span>
+                </div>
+                <button type="submit" class="btn btn-primary col-12">Predict</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    
+    // Récupération des éléments DOM par leur ID
+    const hauteur = document.getElementById('hauteur');
+    const hauteurValue = document.getElementById('hauteurValue');
+    const Nombre_de_roues = document.getElementById('Nombre_de_roues');
+    const Nombre_de_rouesValue = document.getElementById('Nombre_de_rouesValue');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        if (hauteur && hauteurValue) {
+            hauteurValue.textContent = hauteur.value;
+        }
+        if (Nombre_de_roues && Nombre_de_rouesValue) {
+            Nombre_de_rouesValue.textContent = Nombre_de_roues.value;
+        }
+    });
+
+    // Fonction de mise à jour générique
+    const updateRangeValue = (inputElement, outputElement) => {
+        if (inputElement && outputElement) {
+            outputElement.textContent = inputElement.value;
+        }
+    };
+
+    // Attribution des écouteurs d'événement 'input'
+    if (hauteur) {
+        hauteur.addEventListener('input', () => updateRangeValue(hauteur, hauteurValue));
+    }
+    if (Nombre_de_roues) {
+        Nombre_de_roues.addEventListener('input', () => updateRangeValue(Nombre_de_roues, Nombre_de_rouesValue));
+    }
+</script>
+{% include "includes/footer.html" %}
