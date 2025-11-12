@@ -1,0 +1,46 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-4">Algorithme de Arbre de Décision</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Détails :</h3>
+            <p>
+                Un arbre de décision est un algorithme qui divise un ensemble de données en sous-groupes homogènes en posant des 
+                questions successives sur les attributs des données. Il fonctionne comme un organigramme :
+                Nœud racine : point de départ de l'arbre, représentant la première question ou condition.
+                Branches : chemins possibles selon les réponses à la question.
+                Nœuds internes : questions intermédiaires qui affinent la décision.
+                Nœuds feuilles : résultats finaux (classe ou valeur prédite).
+            </p>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Caractéristiques :</h3>
+            <ul>
+                <li>Facile à comprendre et à visualiser</li>
+                <li>Fonctionne avec tout type de données</li>
+                <li>Peut être combiné avec d'autres arbre</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <iframe 
+            src="{% static 'pdfs/chapitre5.pdf' %}" 
+            width="100%" 
+            height="600px" 
+            style="border:1px solid #ccc;">
+        </iframe>
+
+        <p>
+            Ce navigateur ne supporte pas les PDFs. 
+            Veuillez le télécharger :
+            <a href="{% static 'pdfs/chapitre5.pdf' %}">Télécharger le PDF</a>
+        </p>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
