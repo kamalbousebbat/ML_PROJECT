@@ -12,4 +12,9 @@ urlpatterns = [
     path('randforest_atelier/',views.randforest_atelier,name='randforest_atelier'),
     path('randforest_tester/',views.randforest_tester,name='randforest_tester'),
     path('randforest_prediction/',views.randforest_prediction,name='randforest_prediction'),
+    #Decision Tree
+    path('decTree_details/',views.decTree_details,name='decTree_details'),
+    path('decTree_atelier/',views.decTree_atelier,name='decTree_atelier'),
+    path('decTree_tester/',views.decTree_tester,name='decTree_tester'),
+    path('decTree_prediction/',views.decTree_prediction,name='decTree_prediction'),
 ]
