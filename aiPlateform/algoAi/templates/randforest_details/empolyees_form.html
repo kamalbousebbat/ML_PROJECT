@@ -1,0 +1,118 @@
+{% include "includes/header.html" %}
+{% load static %}
+<div class="container">
+    <h2>Caractéristiques de l'employé</h2>
+    <div class="ps-2 card">
+        <div class="card-body">
+            <form method="post" action="{% url 'randforest_prediction' %}" class="ps-4 pe-4 pt-4 pb-4">
+                {% csrf_token %}
+                
+                <!-- Education -->
+                <div class="mb-4">
+                    <label for="education" class="form-label">Niveau d'études</label>
+                    <select class="form-select" id="education" name="Education">
+                        <option value="Bachelors">Bachelors</option>
+                        <option value="Masters">Masters</option>
+                        <option value="PHD">PHD</option>
+                        <option value="Other">Autre</option>
+                    </select>
+                </div>
+                
+                <!-- Joining Year -->
+                <div class="mb-4">
+                    <label for="joining_year" class="form-label">Année d'embauche</label>
+                    <input type="number" class="form-control" id="joining_year" name="JoiningYear"
+                           min="2012" max="2018" value="2016">
+                </div>
+                
+                <!-- City -->
+                <div class="mb-4">
+                    <label for="city" class="form-label">Ville</label>
+                    <select class="form-select" id="city" name="City">
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Pune">Pune</option>
+                        <option value="New Delhi">New Delhi</option>
+                        <option value="Other">Autre</option>
+                    </select>
+                </div>
+                
+                <!-- Payment Tier -->
+                <div class="mb-4">
+                    <label for="payment_tier" class="form-label">Catégorie salariale</label>
+                    <select class="form-select" id="payment_tier" name="PaymentTier">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                
+                <!-- Age -->
+                <div class="mb-4">
+                    <label for="age" class="form-label">Âge</label>
+                    <input type="number" class="form-control" id="age" name="Age" min="22" max="41" value="30">
+                </div>
+                
+                <!-- Gender -->
+                <div class="mb-4">
+                    <label for="gender" class="form-label">Genre</label>
+                    <select class="form-select" id="gender" name="Gender">
+                        <option value="Male">Homme</option>
+                        <option value="Female">Femme</option>
+                    </select>
+                </div>
+                
+                <!-- Ever Benched -->
+                <div class="mb-4">
+                    <label for="ever_benched" class="form-label">A-t-il déjà été sans affectation ?</label>
+                    <select class="form-select" id="ever_benched" name="EverBenched">
+                        <option value="Yes">Oui</option>
+                        <option value="No">Non</option>
+                    </select>
+                </div>
+                
+                <!-- Experience in Current Domain -->
+                <div class="mb-4">
+                    <label for="experience" class="form-label">Expérience dans le domaine actuel (années)</label>
+                    <input type="number" class="form-control" id="experience" name="ExperienceInCurrentDomain" min="0" max="7" value="2">
+                </div>
+                
+                <button type="submit" class="btn btn-primary col-12">Prédire le départ</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    
+    // Récupération des éléments DOM par leur ID
+    const hauteur = document.getElementById('hauteur');
+    const hauteurValue = document.getElementById('hauteurValue');
+    const Nombre_de_roues = document.getElementById('Nombre_de_roues');
+    const Nombre_de_rouesValue = document.getElementById('Nombre_de_rouesValue');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        if (hauteur && hauteurValue) {
+            hauteurValue.textContent = hauteur.value;
+        }
+        if (Nombre_de_roues && Nombre_de_rouesValue) {
+            Nombre_de_rouesValue.textContent = Nombre_de_roues.value;
+        }
+    });
+
+    // Fonction de mise à jour générique
+    const updateRangeValue = (inputElement, outputElement) => {
+        if (inputElement && outputElement) {
+            outputElement.textContent = inputElement.value;
+        }
+    };
+
+    // Attribution des écouteurs d'événement 'input'
+    if (hauteur) {
+        hauteur.addEventListener('input', () => updateRangeValue(hauteur, hauteurValue));
+    }
+    if (Nombre_de_roues) {
+        Nombre_de_roues.addEventListener('input', () => updateRangeValue(Nombre_de_roues, Nombre_de_rouesValue));
+    }
+</script>
+{% include "includes/footer.html" %}
