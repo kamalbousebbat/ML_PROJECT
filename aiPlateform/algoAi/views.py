@@ -244,3 +244,93 @@ def decTree_prediction(request):
         return render(request, 'Decision_tree/decTree_results.html', context)
         
     return render(request, 'Decision_tree/decTree_form.html')
+
+# SVM
+
+def SVM_details(request):
+    return render(request,'Support_Vector_Machine/SVM_details.html')
+
+def SVM_atelier(request):
+    return render(request,'Support_Vector_Machine/SVM_atelier.html')
+
+def SVM_tester(request):
+    return render(request , 'Support_Vector_Machine/SVM_form.html')
+
+def SVM_prediction(request):
+    #Tâche 1 : Recevoir le Colis
+    if request.method == 'POST':
+        # Tâche 2 : Déballer le Colis
+        education = request.POST.get('Education')
+        joining_year = int(request.POST.get('JoiningYear'))
+        city = request.POST.get('City')
+        payment_tier = int(request.POST.get('PaymentTier'))
+        age = int(request.POST.get('Age'))
+        gender = request.POST.get('Gender')
+        ever_benched = request.POST.get('EverBenched')  # "Yes" ou "No"
+        experience = float(request.POST.get('ExperienceInCurrentDomain'))
+
+        if(education.lower()=='Bachelors'):
+            education_model=0
+        elif(education.lower()=='Masters'):
+            education_model=1
+        else:
+            education_model=2
+
+        City_Pune=0
+        City_New_Delhi=0
+        City_Bangalore=0
+        if(city.lower()=='bangalore'):
+            City_Bangalore=1
+        elif(city.lower()=='new delhi'):
+            City_New_Delhi=1
+        else:
+            City_Pune=0
+        
+
+        # Convertir EverBenched en binaire si nécessaire
+        ever_benched_model = 1 if ever_benched.lower() == 'yes' else 0
+        gender_model = 1 if gender.lower() == 'male' else 0
+        
+        # Tâche 3 : Réveiller l'Expert
+        # cette fonction (load_models) est défini avant
+        model = load_models('support_vector_machine_model.pkl')
+        
+        # Tâche 4 : Poser la Question à l'Expert
+        prediction = model.predict([[education_model,joining_year,payment_tier,age,gender_model,ever_benched_model,experience,City_Bangalore,City_New_Delhi,City_Pune]])
+        predicted_class = prediction[0]
+
+        # Debug : afficher la prédiction dans la console
+        print("=== DEBUG ===")
+        print("Input DataFrame :")
+        print(predicted_class)
+        print("Predicted Class :", predicted_class)
+        print("================")
+        
+        # Tâche 5 : Traduire la Réponse
+        employee_leave = {0: 'NOT LEAVING', 1: 'LEAVING'}
+        img_url = {'NOT LEAVING':'images/SVM_image1.jpg', 'LEAVING':'images/SVM_image2.jpg'}
+        pred_vehicule = employee_leave[predicted_class]
+        pred_img = img_url[pred_vehicule]
+        
+        # Tâche 6 : Préparer le Plateau-Repas (context)
+        input_data = {
+            'education':education,
+            'joining_year':joining_year,
+            'city':city,
+            'payment_tier':payment_tier,
+            'age':age,
+            'gender':gender,
+            'ever_benched':ever_benched,
+            'experience':experience
+           
+        }
+        
+        context = {
+            'leaving':pred_vehicule,
+            'img_emp':pred_img,
+            'inital_data' : input_data # NOTE: Il y a une faute de frappe dans l'image ('inital_data' au lieu de 'initial_data')
+        }
+        
+        return render(request, 'Support_Vector_Machine/SVM_results.html', context)
+        
+    return render(request, 'Support_Vector_Machine/SVM_form.html')

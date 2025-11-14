@@ -17,4 +17,9 @@ urlpatterns = [
     path('decTree_atelier/',views.decTree_atelier,name='decTree_atelier'),
     path('decTree_tester/',views.decTree_tester,name='decTree_tester'),
     path('decTree_prediction/',views.decTree_prediction,name='decTree_prediction'),
+    #Support Vector Machine
+    path('SVM_details/',views.SVM_details,name='SVM_details'),
+    path('SVM_atelier/',views.SVM_atelier,name='SVM_atelier'),
+    path('SVM_tester/',views.SVM_tester,name='SVM_tester'),
+    path('SVM_prediction/',views.SVM_prediction,name='SVM_prediction'),
 ]

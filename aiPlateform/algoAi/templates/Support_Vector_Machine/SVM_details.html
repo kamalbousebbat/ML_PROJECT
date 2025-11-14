@@ -1,0 +1,43 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-4">Algorithme Support Vector Machine</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Détails :</h3>
+            <p>
+Un <strong>Support Vector Machine (SVM)</strong> est un algorithme de <em>machine learning supervisé</em> utilisé pour la classification et parfois la régression. Son objectif principal est de séparer les données en différentes classes en trouvant la <strong>meilleure frontière</strong> (ou hyperplan) qui maximise la distance entre les points des différentes classes. Les points les plus proches de cette frontière sont appelés <strong>vecteurs de support</strong>, car ils supportent la position de la frontière. Le SVM peut créer des frontières <strong>linéaires</strong> (droites) ou <strong>non linéaires</strong> grâce à des <em>kernels</em> tels que RBF, polynomial, etc. En résumé, le SVM cherche à obtenir la meilleure séparation possible entre les classes en se basant sur ces points critiques, les vecteurs de support.
+</p>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Caractéristiques :</h3>
+            <ul>
+                <li>Utilisation des vecteurs de support</li>
+                <li>Robustesse face au surapprentissage (overfitting)</li>
+                <li>Capacité à gérer des données de haute dimension</li>
+                <li>Possibilité de régularisation</li>
+                <li>Flexibilité avec les kernels</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <iframe 
+            src="{% static 'pdfs/chapitre5.pdf' %}" 
+            width="100%" 
+            height="600px" 
+            style="border:1px solid #ccc;">
+        </iframe>
+
+        <p>
+            Ce navigateur ne supporte pas les PDFs. 
+            Veuillez le télécharger :
+            <a href="{% static 'pdfs/chapitre5.pdf' %}">Télécharger le PDF</a>
+        </p>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
