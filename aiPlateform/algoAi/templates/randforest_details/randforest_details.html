@@ -1,0 +1,43 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-4">Algorithme de Régression Logistique</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Détails :</h3>
+            <p>
+                Le Random Forest est un modèle d’apprentissage supervisé basé sur un ensemble de plusieurs arbres de décision.
+                Chaque arbre est entraîné sur un échantillon aléatoire des données et des variables, 
+                puis leurs prédictions sont combinées pour obtenir un résultat plus précis et plus stable.
+            </p>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Caractéristiques :</h3>
+            <ul>
+                <li>Méthode d’ensemble (bagging)</li>
+                <li>Réduction du surapprentissage (overfitting)</li>
+                <li>Robuste et précis</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <iframe 
+            src="{% static 'pdfs/chapitre5.pdf' %}" 
+            width="100%" 
+            height="600px" 
+            style="border:1px solid #ccc;">
+        </iframe>
+
+        <p>
+            Ce navigateur ne supporte pas les PDFs. 
+            Veuillez le télécharger :
+            <a href="{% static 'pdfs/chapitre5.pdf' %}">Télécharger le PDF</a>
+        </p>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}

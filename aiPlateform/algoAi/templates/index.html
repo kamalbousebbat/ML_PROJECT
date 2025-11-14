@@ -1,10 +1,7 @@
 {% load static %}
 {% include "./includes/header.html" %}
-
-    
-        
-    <div class="container">
-        <h2 class="mb-4">Les Algorithmes</h2>
+<div class="container">
+    <h2 class="mb-4">Les Algorithmes</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card h-100">
@@ -23,7 +20,42 @@
                     </div>
                 </div>
             </div>
+            <div class="col">
+                <div class="card h-100">
+                    <h5 class="card-header">Algorithme Random Forest</h5>
+                    <div class="card-body">
+                        <img src="{% static 'images/download.png' %}" class="card-img-top" alt="Régression Logistique">
+                        <div class="card-text mt-3">
+                            <p>
+                                L'algorithme Random Forest est un algorithme d'apprentissage suppervisé de classification
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer center">
+                        <a class="btn btn-info col-12 mt-2" href="{% url 'randforest_details' %}">Plus détails</a>
+                        <a class="btn btn-success col-12 mt-2" href="{% url 'randforest_atelier' %}">Exemple de Classification</a>
+                    </div>
+                </div>
+            </div>
+            <!--Card de Arbre de Decision-->
+            <div class="col">
+                <div class="card h-100">
+                    <h5 class="card-header">Algorithme Decision Tree</h5>
+                    <div class="card-body">
+                        <img src="{% static 'images/image1.png' %}" class="card-img-top" alt="Decision Tree">
+                        <div class="card-text mt-3">
+                            <p>Un arbre de décision est un modèle d'apprentissage supervisé utilisé pour la classification et la régression</p>
+                        </div>
+                    </div>
+                    <div class="card-footer center">
+                        <a class="btn btn-info col-12 mt-2" href="{% url 'decTree_details' %}">Plus détails</a>
+                        <a class="btn btn-success col-12 mt-2" href="{% url 'decTree_atelier' %} ">Exemple de Classification</a>
+                    </div>
+            </div>
         </div>
+<<<<<<< HEAD
+=======
+>>>>>>> 7d49d53116b1f9f9beb3e604ae810b318c9c3dd0
         
     </div>
 
