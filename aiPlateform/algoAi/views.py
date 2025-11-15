@@ -334,3 +334,95 @@ def SVM_prediction(request):
         return render(request, 'Support_Vector_Machine/SVM_results.html', context)
         
     return render(request, 'Support_Vector_Machine/SVM_form.html')
+
+
+# SVM REGRESSION 
+
+def SVM_Reg_details(request):
+    return render(request, 'SVM_Regression/SVM_Reg_details.html')
+
+
+def SVM_Reg_atelier(request):
+    return render(request, 'SVM_Regression/SVM_Reg_atelier.html')
+
+
+def SVM_Reg_tester(request):
+    return render(request, 'SVM_Regression/SVM_Reg_form.html')
+
+
+def SVM_Reg_prediction(request):
+    if request.method == 'POST':
+        try:
+            age = float(request.POST.get('Age'))
+            gender = request.POST.get('Gender')
+            weight = float(request.POST.get('Weight (kg)'))
+            height = float(request.POST.get('Height (m)'))
+            max_bpm = float(request.POST.get('Max_BPM'))
+            avg_bpm = float(request.POST.get('Avg_BPM'))
+            resting_bpm = float(request.POST.get('Resting_BPM'))
+            session_duration = float(request.POST.get('Session_Duration (hours)'))
+            workout_type = request.POST.get('Workout_Type')
+            fat_percentage = float(request.POST.get('Fat_Percentage'))
+            water_intake = float(request.POST.get('Water_Intake (liters)'))
+            workout_freq = float(request.POST.get('Workout_Frequency (days/week)'))
+            experience = request.POST.get('Experience_Level')
+            bmi = float(request.POST.get('BMI'))
+
+        except Exception as e:
+            return render(request, 'SVM_Regression/SVM_Reg_form.html', {
+                'error': '⚠️ Vérifiez que toutes les valeurs numériques sont correctement remplies.'
+            })
+
+        # Encoder les valeurs catégorielles
+        gender_val = 1 if gender.lower() == "male" else 0
+
+        workout_map = {"Yoga": 0, "Cardio": 1, "Strength": 2, "HIIT": 3, "Other": 4}
+        workout_val = workout_map.get(workout_type, 4)
+
+        exp_map = {"Beginner": 0, "Intermediate": 1, "Advanced": 2}
+        exp_val = exp_map.get(experience, 1)
+
+        # Charger modèle
+        model = load_models('SVR_model.pkl')
+
+        # Features
+        features = [[
+            age, gender_val, weight, height, max_bpm, avg_bpm, resting_bpm,
+            session_duration, workout_val, fat_percentage, water_intake,
+            workout_freq, exp_val, bmi
+        ]]
+
+        # Prédiction
+        prediction = model.predict(features)
+        calories_pred = round(float(prediction[0]), 2)
+        
+        # Choisir image selon genre
+        if gender.lower() == "male":
+           img_path = "images/SVRimage2.jpg"
+        else:
+           img_path = "images/SVRimage1.jpg"
+
+        context = {
+            'prediction': calories_pred,
+            'initial_data': {
+                'Age': age,
+                'Gender': gender,
+                'Weight (kg)': weight,
+                'Height (m)': height,
+                'Max_BPM': max_bpm,
+                'Avg_BPM': avg_bpm,
+                'Resting_BPM': resting_bpm,
+                'Session_Duration (hours)': session_duration,
+                'Workout_Type': workout_type,
+                'Fat_Percentage': fat_percentage,
+                'Water_Intake (liters)': water_intake,
+                'Workout_Frequency (days/week)': workout_freq,
+                'Experience_Level': experience,
+                'BMI': bmi,
+            },
+            'img_reg': img_path
+        }
+
+        return render(request, 'SVM_Regression/SVM_Reg_results.html', context)
+
+    return render(request, 'SVM_Regression/SVM_Reg_form.html')
