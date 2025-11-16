@@ -22,8 +22,20 @@ urlpatterns = [
     path('SVM_atelier/',views.SVM_atelier,name='SVM_atelier'),
     path('SVM_tester/',views.SVM_tester,name='SVM_tester'),
     path('SVM_prediction/',views.SVM_prediction,name='SVM_prediction'),
+
     # Decision Tree Regressor
     path('decTreeReg_atelier/',views.decTreeReg_atelier,name='decTreeReg_atelier'),
     path('decTreeReg_tester/',views.decTreeReg_tester,name='decTreeReg_tester'),
     path('decTreeReg_prediction/',views.decTreeReg_prediction,name='decTreeReg_prediction'),
+
+    #Support Vector Machine Regréssion
+    path('SVM_Reg_details/',views.SVM_Reg_details,name='SVM_Reg_details'),
+    path('SVM_Reg_atelier/', views.SVM_Reg_atelier, name='SVM_Reg_atelier'),
+    path('SVM_Reg_tester/',views.SVM_Reg_tester,name='SVM_Reg_tester'),
+    path('SVM_Reg_prediction/',views.SVM_Reg_prediction,name='SVM_Reg_prediction'),
+    #Random Forest Regression
+    path('RFRatelier/', views.RFR_atelier, name='RFRatelier'),
+    path('RFRtester/',views.RFR_tester,name='RFRtester'),
+    path('RFRprediction/',views.RFR_prediction,name='RFRprediction'),
+
 ]

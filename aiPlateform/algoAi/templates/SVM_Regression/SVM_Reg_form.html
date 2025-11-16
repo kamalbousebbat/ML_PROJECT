@@ -1,0 +1,134 @@
+{% include "includes/header.html" %}
+{% load static %}
+<div class="container">
+    <h2>Caractéristiques du Membre</h2>
+    <div class="ps-2 card">
+        <div class="card-body">
+            <form method="post" action="{% url 'SVM_Reg_prediction'%}" class="ps-4 pe-4 pt-4 pb-4">
+                {% csrf_token %}
+                
+                <!-- Age -->
+                <div class="mb-4">
+                    <label for="age" class="form-label">Âge</label>
+                    <input type="number" class="form-control" id="age" name="Age" min="10" max="90" value="28">
+                </div>
+
+                <!-- Gender -->
+                <div class="mb-4">
+                    <label for="gender" class="form-label">Genre</label>
+                    <select class="form-select" id="gender" name="Gender">
+                        <option value="Male">Homme</option>
+                        <option value="Female">Femme</option>
+                    </select>
+                </div>
+
+                <!-- Weight -->
+                <div class="mb-4">
+                    <label for="weight" class="form-label">Poids (kg)</label>
+                    <input type="number" step="0.1" class="form-control" id="weight" name="Weight (kg)" min="30" max="200" value="70">
+                </div>
+
+                <!-- Height -->
+                <div class="mb-4">
+                    <label for="height" class="form-label">Taille (m)</label>
+                    <input type="number" step="0.01" class="form-control" id="height" name="Height (m)" min="1.30" max="2.20" value="1.70">
+                </div>
+
+                <!-- Max BPM -->
+                <div class="mb-4">
+                    <label for="max_bpm" class="form-label">Fréquence Cardiaque Maximale (BPM)</label>
+                    <input type="number" class="form-control" id="max_bpm" name="Max_BPM" min="50" max="220" value="180">
+                </div>
+
+                <!-- Avg BPM -->
+                <div class="mb-4">
+                    <label for="avg_bpm" class="form-label">Fréquence Cardiaque Moyenne (BPM)</label>
+                    <input type="number" class="form-control" id="avg_bpm" name="Avg_BPM" min="40" max="200" value="140">
+                </div>
+
+                <!-- Resting BPM -->
+                <div class="mb-4">
+                    <label for="rest_bpm" class="form-label">Fréquence Cardiaque au Repos (BPM)</label>
+                    <input type="number" class="form-control" id="rest_bpm" name="Resting_BPM" min="35" max="120" value="60">
+                </div>
+
+                <!-- Session Duration -->
+                <div class="mb-4">
+                    <label for="session_duration" class="form-label">Durée de la séance (heures)</label>
+                    <input type="number" step="0.1" class="form-control" id="session_duration" name="Session_Duration (hours)" min="0.1" max="5" value="1.5">
+                </div>
+
+                <!-- Workout Type -->
+                <div class="mb-4">
+                    <label for="workout_type" class="form-label">Type d'entraînement</label>
+                    <select class="form-select" id="workout_type" name="Workout_Type">
+                        <option value="Cardio">Cardio</option>
+                        <option value="Strength">Musculation</option>
+                        <option value="Yoga">Yoga</option>
+                        <option value="HIIT">HIIT</option>
+                        <option value="Other">Cyclisme</option>
+                    </select>
+                </div>
+
+                <!-- Fat Percentage -->
+                <div class="mb-4">
+                    <label for="fat_percentage" class="form-label">% Masse Grasse</label>
+                    <input type="number" step="0.1" class="form-control" id="fat_percentage" name="Fat_Percentage" min="5" max="60" value="18">
+                </div>
+
+                <!-- Water Intake -->
+                <div class="mb-4">
+                    <label for="water_intake" class="form-label">Hydratation (litres/jour)</label>
+                    <input type="number" step="0.1" class="form-control" id="water_intake" name="Water_Intake (liters)" min="0.5" max="10" value="2.5">
+                </div>
+
+                <!-- Workout Frequency -->
+                <div class="mb-4">
+                    <label for="workout_frequency" class="form-label">Fréquence sportive (jours/semaine)</label>
+                    <input type="number" class="form-control" id="workout_frequency" name="Workout_Frequency (days/week)" min="1" max="7" value="4">
+                </div>
+
+                <!-- Experience Level -->
+                <div class="mb-4">
+                    <label for="experience_level" class="form-label">Niveau sportif</label>
+                    <select class="form-select" id="experience_level" name="Experience_Level">
+                        <option value="Beginner">Débutant</option>
+                        <option value="Intermediate">Intermédiaire</option>
+                        <option value="Advanced">Avancé</option>
+                    </select>
+                </div>
+
+                <!-- BMI -->
+                <div class="mb-4">
+                    <label for="bmi" class="form-label">Indice de Masse Corporelle (IMC)</label>
+                    <input type="number" step="0.1" class="form-control" id="bmi" name="BMI" min="10" max="60" value="24.2">
+                </div>
+
+                <button type="submit" class="btn btn-primary col-12">Prédire les Calories Brûlées</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const ageInput = document.getElementById("age");
+
+    const errorMessage = document.createElement("p");
+    errorMessage.style.color = "red";
+    errorMessage.style.fontSize = "0.9em";
+    errorMessage.style.marginTop = "5px";
+    ageInput.parentNode.appendChild(errorMessage);
+
+    ageInput.addEventListener("input", function() {
+        const year = parseInt(ageInput.value);
+        if (year < 10 || year > 90) {
+            errorMessage.textContent = "L'âge doit être compris entre 10 et 90 ans.";
+        } else {
+            errorMessage.textContent = "";
+        }
+    });
+});
+</script>
+
+{% include "includes/footer.html" %}
