@@ -1,0 +1,116 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2>Données du membre (Gym)</h2>
+
+    <div class="ps-2 card">
+        <div class="card-body">
+
+            <form method="post" action="{% url 'decTreeReg_prediction'%}" class="ps-4 pe-4 pt-4 pb-4">
+                {% csrf_token %}
+
+                <!-- Age -->
+                <div class="mb-4">
+                    <label for="age" class="form-label">Âge</label>
+                    <input type="number" class="form-control" id="age" name="Age" min="10" max="90" value="30">
+                </div>
+
+                <!-- Gender -->
+                <div class="mb-4">
+                    <label for="gender" class="form-label">Genre</label>
+                    <select class="form-select" id="gender" name="Gender">
+                        <option value="Male">Homme</option>
+                        <option value="Female">Femme</option>
+                    </select>
+                </div>
+
+                <!-- Weight -->
+                <div class="mb-4">
+                    <label for="weight" class="form-label">Poids (kg)</label>
+                    <input type="number" step="0.1" class="form-control" id="weight" name="Weight">
+                </div>
+
+                <!-- Height -->
+                <div class="mb-4">
+                    <label for="height" class="form-label">Taille (m)</label>
+                    <input type="number" step="0.01" class="form-control" id="height" name="Height">
+                </div>
+
+                <!-- Max BPM -->
+                <div class="mb-4">
+                    <label for="max_bpm" class="form-label">Fréquence cardiaque maximale</label>
+                    <input type="number" class="form-control" id="max_bpm" name="Max_BPM">
+                </div>
+
+                <!-- Avg BPM -->
+                <div class="mb-4">
+                    <label for="avg_bpm" class="form-label">Fréquence cardiaque moyenne</label>
+                    <input type="number" class="form-control" id="avg_bpm" name="Avg_BPM">
+                </div>
+
+                <!-- Resting BPM -->
+                <div class="mb-4">
+                    <label for="resting_bpm" class="form-label">BPM au repos</label>
+                    <input type="number" class="form-control" id="resting_bpm" name="Resting_BPM">
+                </div>
+
+                <!-- Session Duration -->
+                <div class="mb-4">
+                    <label for="session_duration" class="form-label">Durée de la session (heures)</label>
+                    <input type="number"  step="any" class="form-control" id="session_duration" name="Session_Duration">
+                </div>
+
+                <!-- Workout Type -->
+                <div class="mb-4">
+                    <label for="workout_type" class="form-label">Type d'entraînement</label>
+                    <select class="form-select" id="workout_type" name="Workout_Type">
+                        <option value="Cardio">Cardio</option>
+                        <option value="Strength">Strength</option>
+                        <option value="HIIT">HIIT</option>
+                        <option value="Yoga">Yoga</option>
+                        <option value="Other">Autre</option>
+                    </select>
+                </div>
+
+                <!-- Fat Percentage -->
+                <div class="mb-4">
+                    <label for="fat" class="form-label">Pourcentage de graisse</label>
+                    <input type="number" step="0.1" class="form-control" id="fat" name="Fat_Percentage">
+                </div>
+
+                <!-- Water Intake -->
+                <div class="mb-4">
+                    <label for="water" class="form-label">Eau consommée (litres)</label>
+                    <input type="number" step="0.1" class="form-control" id="water" name="Water_Intake">
+                </div>
+
+                <!-- Workout Frequency -->
+                <div class="mb-4">
+                    <label for="frequency" class="form-label">Fréquence des entraînements (jours/semaine)</label>
+                    <input type="number" class="form-control" id="frequency" name="Workout_Frequency">
+                </div>
+
+                <!-- Experience Level -->
+                <div class="mb-4">
+                    <label for="experience_level" class="form-label">Expérience (années)</label>
+                    <input type="number" class="form-control" id="experience_level" name="Experience_Level" 
+                         min="0" max="40" value="2" step="1">
+                    </div>
+
+
+                <!-- BMI -->
+                <div class="mb-4">
+                    <label for="bmi" class="form-label">IMC (BMI)</label>
+                    <input type="number" step="0.01" class="form-control" id="bmi" name="BMI">
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn btn-primary col-12">Prédire</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}

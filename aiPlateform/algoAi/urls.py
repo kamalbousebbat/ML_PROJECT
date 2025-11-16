@@ -22,4 +22,8 @@ urlpatterns = [
     path('SVM_atelier/',views.SVM_atelier,name='SVM_atelier'),
     path('SVM_tester/',views.SVM_tester,name='SVM_tester'),
     path('SVM_prediction/',views.SVM_prediction,name='SVM_prediction'),
+    # Decision Tree Regressor
+    path('decTreeReg_atelier/',views.decTreeReg_atelier,name='decTreeReg_atelier'),
+    path('decTreeReg_tester/',views.decTreeReg_tester,name='decTreeReg_tester'),
+    path('decTreeReg_prediction/',views.decTreeReg_prediction,name='decTreeReg_prediction'),
 ]
