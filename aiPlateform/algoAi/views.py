@@ -159,7 +159,7 @@ def randforest_prediction(request):
         
     return render(request, 'randforest_details/empolyees_form.html')
 
-# Decision Tree
+# Decision Tree Classification
 
 def decTree_details(request):
     return render(request,'Decision_tree/decTree_details.html')
@@ -179,7 +179,7 @@ def decTree_prediction(request):
         payment_tier = int(request.POST.get('PaymentTier'))
         age = int(request.POST.get('Age'))
         gender = request.POST.get('Gender')
-        ever_benched = request.POST.get('EverBenched') 
+        ever_benched = request.POST.get('EverBenched')  # "Yes" ou "No"
         experience = float(request.POST.get('ExperienceInCurrentDomain'))
 
         if(education.lower()=='Bachelors'):
@@ -189,13 +189,15 @@ def decTree_prediction(request):
         else:
             education_model=2
 
-        if city.lower() == 'bangalore':
-            city_model = 0
-        elif city.lower() == 'new delhi':
-            city_model = 1
+        City_Pune=0
+        City_New_Delhi=0
+        City_Bangalore=0
+        if(city.lower()=='bangalore'):
+            City_Bangalore=1
+        elif(city.lower()=='new delhi'):
+            City_New_Delhi=1
         else:
-            city_model = 2
-
+            City_Pune=0
         
 
         # Convertir EverBenched en binaire si nécessaire
@@ -204,10 +206,10 @@ def decTree_prediction(request):
         
         # Tâche 3 : Réveiller l'Expert
         # cette fonction (load_models) est défini avant
-        model = load_models('decision_tree_model.pkl')
+        model = load_models('random_forest_model.pkl')
         
         # Tâche 4 : Poser la Question à l'Expert
-        prediction = model.predict([[education_model,joining_year,payment_tier,age,gender_model,ever_benched_model,experience,city_model]])
+        prediction = model.predict([[education_model,joining_year,payment_tier,age,gender_model,ever_benched_model,experience,City_Bangalore,City_New_Delhi,City_Pune]])
         predicted_class = prediction[0]
 
         # Debug : afficher la prédiction dans la console
@@ -219,7 +221,7 @@ def decTree_prediction(request):
         
         # Tâche 5 : Traduire la Réponse
         employee_leave = {0: 'NOT LEAVING', 1: 'LEAVING'}
-        img_url = {'NOT LEAVING':'images/decTree1.jpg', 'LEAVING':'images/decTree2.jpg'}
+        img_url = {'NOT LEAVING':'images/random_forest.jpeg', 'LEAVING':'images/random_forest1.jpeg'}
         pred_vehicule = employee_leave[predicted_class]
         pred_img = img_url[pred_vehicule]
         
@@ -247,7 +249,6 @@ def decTree_prediction(request):
     return render(request, 'Decision_tree/decTree_form.html')
 
 # SVM
-
 def SVM_details(request):
     return render(request,'Support_Vector_Machine/SVM_details.html')
 
@@ -335,6 +336,117 @@ def SVM_prediction(request):
         return render(request, 'Support_Vector_Machine/SVM_results.html', context)
         
     return render(request, 'Support_Vector_Machine/SVM_form.html')
+
+
+# Decision Tree Regression
+def decTreeReg_atelier(request):
+    return render(request,'DecTree_Reg/decTreeReg_atelier.html')
+def decTreeReg_tester(request):
+    return render(request,'DecTree_Reg/decTreeReg_form.html')
+
+def decTreeReg_prediction(request):
+    if request.method == 'POST':
+        try:
+            # === 1) Récupération des valeurs du formulaire ===
+            age = float(request.POST.get('Age'))
+            gender = request.POST.get('Gender')
+            weight = float(request.POST.get('Weight'))
+            height = float(request.POST.get('Height'))
+            max_bpm = float(request.POST.get('Max_BPM'))
+            avg_bpm = float(request.POST.get('Avg_BPM'))
+            resting_bpm = float(request.POST.get('Resting_BPM'))
+            session_duration = float(request.POST.get('Session_Duration'))
+            workout_type = request.POST.get('Workout_Type')
+            fat_percent = float(request.POST.get('Fat_Percentage'))
+            water_intake = float(request.POST.get('Water_Intake'))
+            workout_frequency = float(request.POST.get('Workout_Frequency'))
+            experience_level = request.POST.get('Experience_Level')
+            bmi = float(request.POST.get('BMI'))
+
+        except Exception as e:
+            return render(request, 'DecTree_Reg/decTreeReg_form.html', {
+                'error': 'Vérifiez que toutes les valeurs numériques sont correctement remplies.'
+            })
+
+        # === 2) Encodage manuel ===
+
+        # Gender → 0/1
+        gender_model = 1 if gender.lower() == "male" else 0
+
+        # Workout type → OneHot
+        Workout_Type_Cardio = 0
+        Workout_Type_HIIT = 0
+        Workout_Type_Strength = 0
+        Workout_Type_Yoga = 0
+
+        w = workout_type.lower()
+
+        if w == 'cardio':
+            Workout_Type_Cardio = 1
+        elif w == 'hiit':
+            Workout_Type_HIIT = 1
+        elif w == 'strength':
+            Workout_Type_Strength = 1
+        elif w == 'yoga':
+            Workout_Type_Yoga = 1
+
+        # === 3) Chargement du modèle ===
+        model = load_models('decTreeReg_model.pkl')
+
+        # === 4) Préparation des features ===
+        features = [[
+            age,
+            gender_model,
+            weight,
+            height,
+            max_bpm,
+            avg_bpm,
+            resting_bpm,
+            session_duration,
+            fat_percent,
+            water_intake,
+            workout_frequency,
+            experience_level,
+            bmi,
+            Workout_Type_Cardio,
+            Workout_Type_HIIT,
+            Workout_Type_Strength,
+            Workout_Type_Yoga
+        ]]
+
+        # === 5) Prediction ===
+        prediction = model.predict(features)
+        predicted_value = round(float(prediction[0]), 2)
+
+        # Choisir image selon genre
+        if gender.lower() == "male":
+           img_path = "images/DecTreeRegH.jpeg"
+        else:
+           img_path = "images/DecTreeRegF.jpeg"
+        # === 6) Context pour template ===
+        context = {
+            'prediction': predicted_value,
+            'initial_data': {
+                'Age': age,
+                'Gender': gender,
+                'Weight': weight,
+                'Height': height,
+                'Max_BPM': max_bpm,
+                'Avg_BPM': avg_bpm,
+                'Resting_BPM': resting_bpm,
+                'Session_Duration': session_duration,
+                'Workout_Type': workout_type,
+                'Fat_Percentage': fat_percent,
+                'Water_Intake': water_intake,
+                'Workout_Frequency': workout_frequency,
+                'Experience_Level': experience_level,
+                'BMI': bmi
+            },
+            'img_reg': img_path
+        }
+        return render(request, 'DecTree_Reg/decTreeReg_results.html', context)
+
+    return render(request, 'DecTree_Reg/decTreeReg_form.html')
 
 
 # SVM REGRESSION 
@@ -514,3 +626,4 @@ def RFR_prediction(request):
         return render(request, 'random_forest_regression/RFR_results.html', context)
 
     return render(request, 'random_forest_regression/RFR_form.html')
+
