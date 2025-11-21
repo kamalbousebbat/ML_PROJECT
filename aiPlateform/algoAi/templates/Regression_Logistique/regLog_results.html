@@ -3,19 +3,19 @@
 <div class="container">
     <div class="card mb-3">
         <div class="card-header">
-            <strong>Résultat de classification</strong>
+            <strong>Résultat de Arbre de Decision</strong>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <h5 class="card-title">Type de véhicule prédit :
-                        <span class="badge bg-primary">{{ type_vehicule }}</span>
+                    <h5 class="card-title">employee  :
+                        <span class="badge bg-primary">{{ leaving }}</span>
                     </h5>
-                    <img src="{% static img_vehicule %}" class="img thumbnail card-img-top" style="width:350px">
+                    <img src="{% static img_emp %}" class="img thumbnail card-img-top" style="width:350px">
                 </div>
                 <div class="col-md-6">
                     <p class="card-text">
-                        Le type du véhicule prédit basé sur les caractéristiques suivantes : </p>
+                       La prediction pour que L'employe leave or not est basé sur les caractéristiques suivantes : </p>
                     
                     {% for key, value in inital_data.items %}
                         <p><strong>{{ key }}</strong>: {{ value }}</p>
