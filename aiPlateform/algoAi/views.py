@@ -1,6 +1,9 @@
 from django.shortcuts import render
 import os,joblib
 
+import numpy as np
+
+
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -544,6 +547,9 @@ def decTreeReg_prediction(request):
             Workout_Type_Yoga
         ]]
 
+
+        
+
         # === 5) Prediction ===
         prediction = model.predict(features)
         predicted_value = round(float(prediction[0]), 2)
@@ -633,8 +639,29 @@ def SVM_Reg_prediction(request):
             workout_freq, exp_val, bmi
         ]]
 
+        scaler = load_models('scaler.pkl')
+
+        features = np.array(features)
+        
+        # Colonnes à ne PAS scaler
+        no_scale_cols = [1, 8]   # gender, workout_val
+
+        # Extraire les colonnes à scaler
+        numeric_cols = [i for i in range(features.shape[1]) if i not in no_scale_cols]
+
+        X_numeric = features[:, numeric_cols]
+
+        # Appliquer le scaler uniquement sur les colonnes numériques
+        X_scaled = scaler.transform(X_numeric)
+
+        # Reconstruire l’ordre des colonnes
+        features_final = features.copy()
+
+        # Remplacer les colonnes numériques par les valeurs scalées
+        features_final[:, numeric_cols] = X_scaled
+
         # Prédiction
-        prediction = model.predict(features)
+        prediction = model.predict(features_final)
         calories_pred = round(float(prediction[0]), 2)
         
         # Choisir image selon genre
@@ -716,6 +743,27 @@ def RFR_prediction(request):
             session_duration, workout_val, fat_percentage, water_intake,
             workout_freq, exp_val, bmi
         ]]
+
+        scaler = load_models('scaler.pkl')
+
+        features = np.array(features)
+        
+        # Colonnes à ne PAS scaler
+        no_scale_cols = [1, 8]   # gender, workout_val
+
+        # Extraire les colonnes à scaler
+        numeric_cols = [i for i in range(features.shape[1]) if i not in no_scale_cols]
+
+        X_numeric = features[:, numeric_cols]
+
+        # Appliquer le scaler uniquement sur les colonnes numériques
+        X_scaled = scaler.transform(X_numeric)
+
+        # Reconstruire l’ordre des colonnes
+        features_final = features.copy()
+
+        # Remplacer les colonnes numériques par les valeurs scalées
+        features_final[:, numeric_cols] = X_scaled
 
         # Prédiction
         prediction = model.predict(features)
