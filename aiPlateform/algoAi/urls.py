@@ -38,4 +38,9 @@ urlpatterns = [
     path('RFRtester/',views.RFR_tester,name='RFRtester'),
     path('RFRprediction/',views.RFR_prediction,name='RFRprediction'),
 
+    #XGboost classification
+    path('XGboost_details/',views.XGboost_details,name='XGboost_details'),
+    path('XGboost_atelier/', views.XGboost_atelier, name='XGboost_atelier'),
+    path('XGboost_tester/',views.XGboost_tester,name='XGboost_tester'),
+    path('XGboost_prediction/',views.XGboost_prediction,name='XGboost_prediction'),
 ]

@@ -75,6 +75,25 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Card de XGboost -->
+            <div class="col">
+                <div class="card h-100">
+                    <h5 class="card-header">Algorithme XGboost</h5>
+                    <div class="card-body">
+                        <img src="{% static 'images/XGboost.png' %}" class="card-img-top img-fluid" alt="SVM">
+                        <div class="card-text mt-3">
+                            <p>XGboost est un modèle d'apprentissage supervisé utilisé 
+                            pour la classification et pour la régression.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer center">
+                        <a class="btn btn-info col-12 mt-2" href="{% url 'XGboost_details' %}">Plus détails</a>
+                        <a class="btn btn-success col-12 mt-2" href="{% url 'XGboost_atelier' %}">Exemple de Classification</a>
+                         <a class="btn btn-success col-12 mt-2" href="{% url 'XGboost_atelier' %}">Exemple de Regréssion</a>
+                    </div>
+                </div>
+            </div>
         </div>
         </div>
         
