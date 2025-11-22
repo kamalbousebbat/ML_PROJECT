@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+# app_name = "algoAi"
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('reglog_details/',views.regLog_details,name='reglog_details'),
