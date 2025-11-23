@@ -20,6 +20,25 @@
                     </div>
                 </div>
             </div>
+
+            <!--Card de linear regression-->
+            <div class="col">
+                <div class="card h-100">
+                    <h5 class="card-header">Algorithme linear Regression</h5>
+                    <div class="card-body">
+                        <img src="{% static 'images/RL.jpg' %}" class="card-img-top" alt="Régression Lineare">
+                        <div class="card-text mt-3">
+                            <p>
+                                 L'algorithme Régression Linéaire est un algorithme d'apprentissage suppervisé de regréssion.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer center">
+                        <a class="btn btn-info col-12 mt-2" href="{% url 'Reg_Linear_details' %}">Plus détails</a>
+                        <a class="btn btn-success col-12 mt-2" href="{% url 'Reg_Linear_atelier' %}">Exemple de Regression</a>
+                    </div>
+                </div>
+            </div>
             <div class="col">
                 <div class="card h-100">
                     <h5 class="card-header">Algorithme Random Forest</h5>
@@ -96,8 +115,6 @@
             </div>
         </div>
         </div>
-        
-</div>
-
+</div>    
 
 {% include "./includes/footer.html" %}
