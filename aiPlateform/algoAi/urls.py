@@ -9,6 +9,11 @@ urlpatterns = [
     path('reglog_atelier/',views.regLog_atelier,name='reglog_atelier'),
     path('reglog_tester/',views.regLog_tester,name='reglog_tester'),
     path('reglog_prediction/',views.reglog_prediction,name='reglog_prediction'),
+    #Regression Linéaire
+    path('Reg_Linear_details/',views.Reg_Linear_details,name='Reg_Linear_details'),
+    path('Reg_Linear_atelier/',views.Reg_Linear_atelier,name='Reg_Linear_atelier'),
+    path('Reg_Linear_tester/',views.Reg_Linear_tester,name='Reg_Linear_tester'),
+    path('Reg_Linear_prediction/',views.Reg_Linear_prediction,name='Reg_Linear_prediction'),
     #random forest
     path('randforest_details/',views.randforest_details,name='randforest_details'),
     path('randforest_atelier/',views.randforest_atelier,name='randforest_atelier'),

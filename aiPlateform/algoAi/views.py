@@ -113,6 +113,116 @@ def reglog_prediction(request):
         
     return render(request, 'Regression_Logistique/vehicles_form.html')
 
+# Régression Linéaire 
+
+def Reg_Linear_details(request):
+    return render(request, 'Regression_linear/Reg_Linear_details.html')
+
+
+def Reg_Linear_atelier(request):
+    return render(request, 'Regression_linear/Reg_Linear_atelier.html')
+
+def Reg_Linear_tester(request):
+    return render(request, 'Regression_linear/Reg_Linear_form.html')
+
+def Reg_Linear_prediction(request):
+    if request.method == 'POST':
+        try:
+            age = float(request.POST.get('Age'))
+            gender = request.POST.get('Gender')
+            weight = float(request.POST.get('Weight (kg)'))
+            height = float(request.POST.get('Height (m)'))
+            max_bpm = float(request.POST.get('Max_BPM'))
+            avg_bpm = float(request.POST.get('Avg_BPM'))
+            resting_bpm = float(request.POST.get('Resting_BPM'))
+            session_duration = float(request.POST.get('Session_Duration (hours)'))
+            workout_type = request.POST.get('Workout_Type')
+            fat_percentage = float(request.POST.get('Fat_Percentage'))
+            water_intake = float(request.POST.get('Water_Intake (liters)'))
+            workout_freq = float(request.POST.get('Workout_Frequency (days/week)'))
+            experience = request.POST.get('Experience_Level')
+            bmi = float(request.POST.get('BMI'))
+
+        except Exception as e:
+            return render(request, 'Regression_linear/Reg_Linear_form.html', {
+                'error': '⚠️ Vérifiez que toutes les valeurs numériques sont correctement remplies.'
+            })
+
+        # Encoder les valeurs catégorielles
+        gender_val = 1 if gender.lower() == "male" else 0
+
+        workout_map = {"Yoga": 0, "Cardio": 1, "Strength": 2, "HIIT": 3, "Other": 4}
+        workout_val = workout_map.get(workout_type, 4)
+
+        exp_map = {"Beginner": 0, "Intermediate": 1, "Advanced": 2}
+        exp_val = exp_map.get(experience, 1)
+
+        # Charger modèle
+        model = load_models('RegL_model.pkl')
+
+        # Features
+        features = [[
+            age, gender_val, weight, height, max_bpm, avg_bpm, resting_bpm,
+            session_duration, workout_val, fat_percentage, water_intake,
+            workout_freq, exp_val, bmi
+        ]]
+
+        scaler = load_models('scaler.pkl')
+
+        features = np.array(features)
+        
+        # Colonnes à ne PAS scaler
+        no_scale_cols = [1, 8]   # gender, workout_val
+
+        # Extraire les colonnes à scaler
+        numeric_cols = [i for i in range(features.shape[1]) if i not in no_scale_cols]
+
+        X_numeric = features[:, numeric_cols]
+
+        # Appliquer le scaler uniquement sur les colonnes numériques
+        X_scaled = scaler.transform(X_numeric)
+
+        # Reconstruire l’ordre des colonnes
+        features_final = features.copy()
+
+        # Remplacer les colonnes numériques par les valeurs scalées
+        features_final[:, numeric_cols] = X_scaled
+
+        # Prédiction
+        prediction = model.predict(features_final)
+        calories_pred = round(float(prediction[0]), 2)
+        
+        # Choisir image selon genre
+        if gender.lower() == "male":
+           img_path = "images/SVRimage2.jpg"
+        else:
+           img_path = "images/SVRimage1.jpg"
+
+        context = {
+            'prediction': calories_pred,
+            'initial_data': {
+                'Age': age,
+                'Gender': gender,
+                'Weight (kg)': weight,
+                'Height (m)': height,
+                'Max_BPM': max_bpm,
+                'Avg_BPM': avg_bpm,
+                'Resting_BPM': resting_bpm,
+                'Session_Duration (hours)': session_duration,
+                'Workout_Type': workout_type,
+                'Fat_Percentage': fat_percentage,
+                'Water_Intake (liters)': water_intake,
+                'Workout_Frequency (days/week)': workout_freq,
+                'Experience_Level': experience,
+                'BMI': bmi,
+            },
+            'img_reg': img_path
+        }
+
+        return render(request, 'Regression_linear/Reg_Linear_results.html', context)
+
+    return render(request, 'Regression_linear/Reg_Linear_form.html')
+
 # Decision Tree Classification
 def decTree_details(request):
     return render(request,'Decision_tree/decTree_details.html')
@@ -695,7 +805,7 @@ def SVM_Reg_prediction(request):
 
     return render(request, 'SVM_Regression/SVM_Reg_form.html')
 
-# SVM REGRESSION 
+# Random Forest REGRESSION 
 
 def RFR_atelier(request):
     return render(request, 'random_forest_regression/RFR_atelier.html')

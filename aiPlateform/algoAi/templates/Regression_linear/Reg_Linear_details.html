@@ -1,0 +1,45 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-4">Algorithme Régression linéaire</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Détails :</h3>
+            <p>
+Une <strong>Régression Linéaire</strong> est un algorithme de <em>machine learning supervisé</em> utilisé pour prédire une variable continue à partir d'une ou plusieurs variables explicatives.
+Son objectif principal est de trouver la <strong>meilleure droite</strong> (ou hyperplan dans le cas multivarié) qui ajuste les points de données tout en minimisant l'écart entre les valeurs prédites et les valeurs réelles.
+Cette droite est définie par des coefficients (pentes) et une constante (ordonnée à l’origine) qui représentent l’influence de chaque variable explicative sur la variable à prédire.
+En résumé, la régression linéaire cherche à <strong>modéliser la relation linéaire</strong> entre les variables pour pouvoir prédire de nouvelles valeurs de manière simple et efficace.
+</p>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Caractéristiques :</h3>
+            <ul>
+                <li>Prédiction de valeurs continues</li>
+                <li>Minimisation de l’erreur</li>
+                <li>Simplicité et rapidité</li>
+                <li>Facilité de visualisation</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <iframe 
+            src="{% static 'pdfs/Chapitre2.pdf' %}" 
+            width="100%" 
+            height="600px" 
+            style="border:1px solid #ccc;">
+        </iframe>
+
+        <p>
+            Ce navigateur ne supporte pas les PDFs. 
+            Veuillez le télécharger :
+            <a href="{% static 'pdfs/Chapitre2.pdf' %}">Télécharger le PDF</a>
+        </p>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
