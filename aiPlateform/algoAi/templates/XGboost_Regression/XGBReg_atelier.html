@@ -1,0 +1,32 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-4">Atelier Pratique - Prédiction des Calories Brûlées dans une Salle de Sport</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Calories Brûlées</h3>
+            <p>
+                L'objectif de ce projet est de prédire le nombre de calories brûlées par un membre de salle de sport 
+                à partir de ses caractéristiques personnelles (âge, sexe, IMC, pourcentage de graisse corporelle…) 
+                et de ses données d'entraînement (durée de la séance, fréquence cardiaque, type d'exercice, fréquence des entraînements, etc.)
+            </p>
+
+            <a class="btn btn-success col-12 mt-2 mb-2" href="{% url 'XGBReg_tester'%}">Tester le modèle</a>
+        </div>
+
+        <div class="col-md-6">
+            <img src="{% static 'images/decTreeReg1.jpeg' %}" width="40%">
+            <img src="{% static 'images/decTreeReg2.jpeg' %}" width="46%">
+        </div>
+    </div>
+
+    <iframe src="{% static 'pdfs/demonstration_XGBoostReg.pdf' %}" width="100%" height="600px"
+        style="border: 1px solid #ddd;">
+        Ce navigateur ne supporte pas les PDFs. Veuillez le télécharger :
+        <a href="{% static 'pdfs/demonstration_XGBoostReg.pdf' %}">Télécharger PDF</a>
+    </iframe>
+</div>
+
+{% include "includes/footer.html" %}

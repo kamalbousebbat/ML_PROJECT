@@ -50,4 +50,8 @@ urlpatterns = [
     path('XGboost_atelier/', views.XGboost_atelier, name='XGboost_atelier'),
     path('XGboost_tester/',views.XGboost_tester,name='XGboost_tester'),
     path('XGboost_prediction/',views.XGboost_prediction,name='XGboost_prediction'),
+    #XGBoost regression
+    path('XGBReg_atelier/',views.XGBReg_atelier,name='XGBReg_atelier'),
+    path('XGBReg_tester/',views.XGBReg_tester,name='XGBReg_tester'),
+    path('XGBReg_prediction/',views.XGBReg_prediction,name='XGBReg_prediction'),
 ]
