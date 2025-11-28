@@ -1,0 +1,173 @@
+/* ------------------------ */
+/* --- GLOBAL LAYOUT --- */
+/* ------------------------ */
+
+body {
+    background: #0a0a0a;
+    color: #e6e6e6;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+
+
+/* Container général */
+.container {
+    width: 92%;
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 18px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    animation: fadeIn 0.9s ease-out;
+}
+
+/* Animation apparition */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Titres */
+h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 25px;
+    background: linear-gradient(45deg, #4cc9f0, #f72585);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h3 {
+    font-size: 1.6rem;
+    color: #cdd6f4;
+}
+
+/* Paragraphes */
+p {
+    color: #d6d6d6;
+}
+
+/* ------------------------ */
+/* --- GRID SYSTEM (no bootstrap) --- */
+/* ------------------------ */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.col-md-6 {
+    flex: 1 1 calc(50% - 25px);
+}
+/* Pour les petits écrans */
+@media screen and (max-width: 768px) {
+    .col-md-6 {
+        flex: 1 1 100%;
+    }
+}
+
+/* ------------------------ */
+/* --- IMAGES --- */
+/* ------------------------ */
+.side-imgs{
+    display: flex;
+    align-items: center;
+}
+img {
+    margin-left: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.25s ease;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+/* ------------------------ */
+/* --- BUTTONS --- */
+/* ------------------------ */
+
+/* Base Button */
+.btn {
+    display: inline-block;
+    padding: 14px 22px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    width: 70%;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* ★ Effet shine diagonal animé */
+.btn::after {
+    content: "";
+    position: absolute;
+    top: -120%;
+    left: -120%;
+    width: 250%;
+    height: 250%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.45) 45%,
+        rgba(255,255,255,0.75) 50%,
+        rgba(255,255,255,0.45) 55%,
+        transparent 100%
+    );
+    opacity: 0;
+    transform: rotate(25deg);
+    transition: opacity 0.25s ease;
+}
+
+/* ★ Shine visible au hover */
+.btn:hover::after {
+    animation: shineMove 0.9s forwards ease-out;
+    opacity: 1;
+}
+
+/* ★ Animation shine qui traverse le bouton */
+@keyframes shineMove {
+    0%   { top: -120%; left: -120%; }
+    50%  { top: -20%; left: -20%; }
+    100% { top: 120%; left: 120%; }
+}
+
+/* Style principal */
+.btn-success {
+    background: linear-gradient(45deg, #4cc9f0, #f72585);
+    color: #000;
+}
+
+/* Hover — petit lift + gradient inversé */
+.btn-success:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 5px 20px 5px #4cc9f0;
+    background: linear-gradient(45deg, #4cc9f0, #f72585);
+}
+
+/* ------------------------ */
+/* --- IFRAMES --- */
+/* ------------------------ */
+
+iframe {
+    margin-top: 30px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    background: rgba(255,255,255,0.03);
+}

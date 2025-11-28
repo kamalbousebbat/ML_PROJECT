@@ -93,7 +93,7 @@ def reglog_prediction(request):
         
         # Tâche 5 : Traduire la Réponse
         employee_leave = {0: 'NOT LEAVING', 1: 'LEAVING'}
-        img_url = {'NOT LEAVING':'images/random_forest1.jpeg', 'LEAVING':'images/random_forest.jpeg'}
+        img_url = {'NOT LEAVING':'images/random_forest1.jpeg', 'LEAVING':'images/decTree2.jpg'}
         pred_vehicule = employee_leave[predicted_class]
         pred_img = img_url[pred_vehicule]
         
@@ -315,9 +315,9 @@ def decTree_prediction(request):
         }
         
         
-        return render(request, 'Regression_Logistique/reglog_results.html', context)
+        return render(request, 'Decision_tree/decTree_results.html', context)
         
-    return render(request, 'Regression_Logistique/vehicles_form.html')
+    return render(request, 'Decision_tree/decTree_form.html')
 
 # Random Forest
 def randforest_details(request):
@@ -380,7 +380,7 @@ def randforest_prediction(request):
         
         # Tâche 5 : Traduire la Réponse
         employee_leave = {0: 'NOT LEAVING', 1: 'LEAVING'}
-        img_url = {'NOT LEAVING':'images/random_forest.jpeg', 'LEAVING':'images/random_forest1.jpeg'}
+        img_url = {'NOT LEAVING':'images/random_forest1.jpeg', 'LEAVING':'images/decTree2.jpg'}
         pred_vehicule = employee_leave[predicted_class]
         pred_img = img_url[pred_vehicule]
         
@@ -469,7 +469,7 @@ def SVM_prediction(request):
         
         # Tâche 5 : Traduire la Réponse
         employee_leave = {0: 'NOT LEAVING', 1: 'LEAVING'}
-        img_url = {'NOT LEAVING':'images/SVM_image1.jpg', 'LEAVING':'images/SVM_image2.jpg'}
+        img_url = {'NOT LEAVING':'images/random_forest1.jpeg', 'LEAVING':'images/decTree2.jpg'}
         pred_vehicule = employee_leave[predicted_class]
         pred_img = img_url[pred_vehicule]
         
@@ -878,7 +878,7 @@ def XGboost_prediction(request):
         
         # Tâche 5 : Traduire la Réponse
         employee_leave = {0: 'NOT LEAVING', 1: 'LEAVING'}
-        img_url = {'NOT LEAVING':'images/random_forest.jpeg', 'LEAVING':'images/random_forest1.jpeg'}
+        img_url = {'NOT LEAVING':'images/random_forest1.jpeg', 'LEAVING':'images/decTree2.jpg'}
         pred_vehicule = employee_leave[predicted_class]
         pred_img = img_url[pred_vehicule]
         
