@@ -1,0 +1,119 @@
+/* ----- GLOBAL DARK THEME ------ */
+body {
+    background: #0a0a0a;
+    color: #e6e6e6;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* ----- CONTAINER GLASS EFFECT ----- */
+.container {
+    width: 92%;
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 25px 35px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ----- TITRES ----- */
+h2 {
+    font-size: 2.3rem;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 30px;
+    background: linear-gradient(45deg, #4cc9f0, #f72585);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h3 {
+    font-size: 1.6rem;
+    color: #b4befe;
+    margin-bottom: 10px;
+}
+
+/* ----- TEXT ----- */
+p, li {
+    color: #dcdcdc;
+}
+
+/* ----- GRID ----- */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.cara{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.col-md-6 {
+    flex: 1 1 calc(50% - 28px);
+}
+
+@media(max-width: 768px) {
+    .col-md-6 {
+        flex: 1 1 100%;
+    }
+}
+
+/* ----- IFRAME STYLE ----- */
+iframe {
+    margin-top: 25px;
+    border-radius: 14px !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    background: rgba(255,255,255,0.02);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+/* ----- PDF download link ----- */
+a {
+    color: #4cc9f0;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ----- BUTTON (optionnel si tu en mets un dans la page) ----- */
+.btn {
+    display: inline-block;
+    padding: 14px 22px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 14px;
+    width: 70%;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.35s ease;
+}
+
+/* Gradient + Glow neon */
+.btn-success {
+    background: linear-gradient(45deg, #4cc9f0, #f72585);
+    color: #000;
+    box-shadow: 0 4px 15px #4cc9f0;
+}
+
+.btn-success:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 12px 30px #4cc9f0;
+}

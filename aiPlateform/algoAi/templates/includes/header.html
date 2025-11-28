@@ -219,7 +219,7 @@
             {% if user.is_authenticated %}
                 <form action="{% url 'user:logout' %}" method="post" class="logout">
                     {% csrf_token %}
-                    <button class="btn btn btn-outline-danger m-1" aria-label="User Logout" title= "User Logout">
+                    <button  style ="width:100% !important;" class="btn btn btn-outline-danger m-1" aria-label="User Logout" title= "User Logout">
                         Déconnexion
                     </button>
                 </form>

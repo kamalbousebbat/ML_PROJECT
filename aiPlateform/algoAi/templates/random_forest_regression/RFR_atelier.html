@@ -1,6 +1,8 @@
 {% include "includes/header.html" %}
 {% load static %}
 
+<link href="{% static 'css/atelier.css' %}" rel="stylesheet">
+
 <div class="container">
     <h2 class="mb-4">Atelier Pratique - Prédiction des calories brûlées </h2>
 
@@ -21,8 +23,8 @@
         </div>
 
         <div class="col-md-6">
-            <img src="{% static 'images/SVRimage2.jpg' %}" width="53%">
-            <img src="{% static 'images/SVRimage1.jpg' %}" width="46%">
+            <img style="margin:10px !important" src="{% static 'images/SVRimage2.jpg' %}" width="46%">
+            <img style="margin:10px !important" src="{% static 'images/SVRimage1.jpg' %}" width="46%">
         </div>
     </div>
 

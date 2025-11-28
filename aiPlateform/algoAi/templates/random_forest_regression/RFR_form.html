@@ -1,5 +1,8 @@
 {% include "includes/header.html" %}
 {% load static %}
+
+<link href="{% static 'css/form.css' %}" rel="stylesheet">
+
 <div class="container">
     <h2>Caractéristiques du Membre</h2>
     <div class="ps-2 card">
@@ -109,7 +112,7 @@
         </div>
     </div>
 </div>
-
+<script src="{% static 'js/form.js' %}"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const ageInput = document.getElementById("age");
@@ -130,5 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+
+
 
 {% include "includes/footer.html" %}

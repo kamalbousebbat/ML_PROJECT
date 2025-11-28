@@ -1,6 +1,8 @@
 {% include "includes/header.html" %}
 {% load static %}
 
+<link href="{% static 'css/atelier.css' %}" rel="stylesheet">
+
 <div class="container">
     <h2 class="mb-4">Atelier Pratique - Prédiction des Calories Brûlées dans une Salle de Sport</h2>
 
@@ -17,8 +19,8 @@
         </div>
 
         <div class="col-md-6">
-            <img src="{% static 'images/decTreeReg1.jpeg' %}" width="40%">
-            <img src="{% static 'images/decTreeReg2.jpeg' %}" width="46%">
+            <img style="margin:10px !important" src="{% static 'images/decTreeReg1.jpeg' %}" width="46%">
+            <img style="margin:10px !important" src="{% static 'images/decTreeReg2.jpeg' %}" width="46%">
         </div>
     </div>
 

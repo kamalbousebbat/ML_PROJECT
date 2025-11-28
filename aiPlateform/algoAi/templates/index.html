@@ -1,6 +1,315 @@
 {% load static %}
 {% include "./includes/header.html" %}
-<div class="container">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        {% comment %} background: linear-gradient(135deg, #0a192f 0%, #1a2332 50%, #2d1b3d 100%); {% endcomment %}
+        min-height: 100vh;
+        color: #fff;
+    }
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top:20px !important;
+        animation: fadeInDown 0.8s ease-out;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .page-title h2 {
+        font-size: 3rem;
+        background:linear-gradient(45deg,#3586b8 40%,#3f1ea2 60%,#10fd14 90%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+        font-family: fantasy;
+    }
+
+    .page-title p {
+        color: #a8b2d1;
+        font-size: 1.2rem;
+       
+    }
+
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .algo-card {
+        background: rgba(30, 30, 40, 0.9);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        transition: all 0.4s ease;
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+        position: relative;
+        width : auto !important;
+        padding : 0px !important;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .algo-card:nth-child(1) { animation-delay: 0.1s; }
+    .algo-card:nth-child(2) { animation-delay: 0.2s; }
+    .algo-card:nth-child(3) { animation-delay: 0.3s; }
+    .algo-card:nth-child(4) { animation-delay: 0.4s; }
+    .algo-card:nth-child(5) { animation-delay: 0.5s; }
+    .algo-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .algo-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .algo-card:hover::before {
+        opacity: 1;
+    }
+
+    .algo-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        border-color: rgba(102, 126, 234, 0.5);
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(10%, 10%); }
+    }
+
+    .card-header h5 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+        color: #fff;
+    }
+
+    .card-body {
+        padding: 25px;
+    }
+
+    .card-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .card-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .algo-card:hover .card-image-wrapper img {
+        transform: scale(1.1);
+    }
+
+    .card-icon {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        background: rgba(102, 126, 234, 0.9);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-text {
+        color: #a8b2d1;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        min-height: 80px;
+    }
+
+    .card-footer {
+        padding: 20px 25px;
+        background: rgba(20, 20, 30, 0.5);
+        border-top: 1px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 900;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .btn:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    .btn span {
+        position: relative;
+        z-index: 1;
+    }
+
+    .btn-info {
+        color: white;
+        background:linear-gradient(90deg,#9b7bff,#113412);
+    }
+
+    .btn-info:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-success {
+        background:linear-gradient(45deg,#47687b 20%,#5735bd 40%,#224723 70%);
+        color: white;
+    }
+
+    .btn-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-warning {
+        background: linear-gradient(135deg, #4a11cf9e , #415384 );
+        color: white;
+    }
+
+    .btn-warning:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgb(73, 87, 179);
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-top: 10px;
+        background: rgba(102, 126, 234, 0.2);
+        color: #667eea;
+        border: 1px solid rgba(102, 126, 234, 0.3);
+    }
+
+    .badge.classification {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+        border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .badge.regression {
+        background: rgba(33, 61, 200, 0.473);
+        color: #7d82bcde;
+        border-color: rgb(55, 55, 155);
+    }
+
+    @media (max-width: 768px) {
+        .page-title h2 {
+            font-size: 2rem;
+        }
+
+        .cards-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .card-header h5 {
+            font-size: 1.1rem;
+        }
+    }
+</style>
+
+{% comment %} <div class="container">
     <h2 class="mb-4">Les Algorithmes</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
@@ -116,6 +425,149 @@
             </div>
         </div>
         </div>
-</div>    
+</div>     {% endcomment %}
+
+<div class="container">
+    <div class="page-title">
+        <h2>Les Algorithmes</h2>
+        <p>Découvrez les algorithmes de Machine Learning supervisé</p>
+    </div>
+
+    <div class="cards-grid">
+        <!-- Card 1: Régression Logistique -->
+        <div class="algo-card">
+            <div class="card-header">
+                <h5>Régression Logistique</h5>
+            </div>
+            <div class="card-body">
+                <div class="card-image-wrapper">
+                    <img src="{% static 'images/regression_logistique.jpg' %}" alt="Régression Logistique">
+                    <div class="card-icon">📊</div>
+                </div>
+                <div class="card-text">
+                    <p>L'algorithme Régression Logistique est un algorithme d'apprentissage supervisé de classification utilisé pour prédire des probabilités.</p>
+                    <span class="badge classification">Classification</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-info" href="{% url 'reglog_details' %}"><span>Plus de détails</span></a>
+                <a class="btn btn-success" href="{% url 'reglog_atelier' %}"><span>Exemple de Classification</span></a>
+            </div>
+        </div>
+
+        <!-- Card 2: Régression Linéaire -->
+        <div class="algo-card">
+            <div class="card-header">
+                <h5>Régression Linéaire</h5>
+            </div>
+            <div class="card-body">
+                <div class="card-image-wrapper">
+                    <img src="{% static 'images/RL.jpg' %}" alt="Régression Linéaire" >
+                    <div class="card-icon">📈</div>
+                </div>
+                <div class="card-text">
+                    <p>L'algorithme Régression Linéaire est un algorithme d'apprentissage supervisé de régression pour modéliser les relations linéaires.</p>
+                    <span class="badge regression">Régression</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-info" href="{% url 'Reg_Linear_details' %}"><span>Plus de détails</span></a>
+                <a class="btn btn-success" href="{% url 'Reg_Linear_atelier' %}"><span>Exemple de Régression</span></a>
+            </div>
+        </div>
+
+        <!-- Card 3: Random Forest -->
+        <div class="algo-card">
+            <div class="card-header">
+                <h5>Random Forest</h5>
+            </div>
+            <div class="card-body">
+                <div class="card-image-wrapper">
+                    <img src="{% static 'images/download.png' %}" alt="Random Forest">
+                    <div class="card-icon">🌲</div>
+                </div>
+                <div class="card-text">
+                    <p>L'algorithme Random Forest est un ensemble d'arbres de décision pour la classification et la régression avec haute précision.</p>
+                    <span class="badge classification">Classification</span>
+                    <span class="badge regression">Régression</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-info" href="{% url 'randforest_details' %}"><span>Plus de détails</span></a>
+                <a class="btn btn-success" href="{% url 'randforest_atelier' %}"><span>Exemple de Classification</span></a>
+                <a class="btn btn-warning" href="{% url 'RFRatelier' %}"><span>Exemple de Régression</span></a>
+            </div>
+        </div>
+
+        <!-- Card 4: Decision Tree -->
+        <div class="algo-card">
+            <div class="card-header">
+                <h5>Arbre de Décision</h5>
+            </div>
+            <div class="card-body">
+                <div class="card-image-wrapper">
+                    <img src="{% static 'images/image1.png' %}" alt="Decision Tree">
+                    <div class="card-icon">🌳</div>
+                </div>
+                <div class="card-text">
+                    <p>Un arbre de décision est un modèle d'apprentissage supervisé utilisé pour la classification et la régression, facile à interpréter.</p>
+                    <span class="badge classification">Classification</span>
+                    <span class="badge regression">Régression</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-info" href="{% url 'decTree_details' %}"><span>Plus de détails</span></a>
+                <a class="btn btn-success" href="{% url 'decTree_atelier' %}"><span>Exemple de Classification</span></a>
+                <a class="btn btn-warning" href="{% url 'decTreeReg_atelier' %} "><span>Exemple de Régression</span></a>
+            </div>
+        </div>
+
+        <!-- Card 5: SVM -->
+        <div class="algo-card">
+            <div class="card-header">
+                <h5>Support Vector Machine</h5>
+            </div>
+            <div class="card-body">
+                <div class="card-image-wrapper">
+                    <img src="{% static 'images/svm.png' %}" alt="SVM">
+                    <div class="card-icon">🎯</div>
+                </div>
+                <div class="card-text">
+                    <p>Support Vector Machine est un modèle puissant utilisé pour la classification et la régression en trouvant l'hyperplan optimal.</p>
+                    <span class="badge classification">Classification</span>
+                    <span class="badge regression">Régression</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-info" href="{% url 'SVM_details' %}"><span>Plus de détails</span></a>
+                <a class="btn btn-success" href="{% url 'SVM_atelier' %}"><span>Exemple de Classification</span></a>
+                <a class="btn btn-warning" href="{% url 'SVM_Reg_atelier' %}"><span>Exemple de Régression</span></a>
+            </div>
+        </div>
+
+        <!-- Card 6: XGBoost -->
+        <div class="algo-card">
+            <div class="card-header">
+                <h5>XGBoost</h5>
+            </div>
+            <div class="card-body">
+                <div class="card-image-wrapper">
+                    <img src="{% static 'images/XGboost.png' %}" alt="XGBoost">
+                    <div class="card-icon">⚡</div>
+                </div>
+                <div class="card-text">
+                    <p>XGBoost est un algorithme de boosting de gradient extrêmement performant pour la classification et la régression.</p>
+                    <span class="badge classification">Classification</span>
+                    <span class="badge regression">Régression</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-info" href="{% url 'XGboost_details' %}"><span>Plus de détails</span></a>
+                <a class="btn btn-success" href="{% url 'XGboost_atelier' %}"><span>Exemple de Classification</span></a>
+                <a class="btn btn-warning" href="{% url 'XGBReg_atelier' %}"><span>Exemple de Régression</span></a>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% include "./includes/footer.html" %}

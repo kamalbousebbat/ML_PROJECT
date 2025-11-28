@@ -1,6 +1,9 @@
 {% include "includes/header.html" %}
 {% load static %}
 
+<link href="{% static 'css/atelier.css' %}" rel="stylesheet">
+
+
 <div class="container">
     <h2 class="mb-4">Atelier Pratique - Prédiction du départ des employés</h2>
 
@@ -18,8 +21,8 @@
         </div>
 
         <div class="col-md-6">
-            <img src="{% static 'images/decTree2.jpg' %}" width="40%">
-            <img src="{% static 'images/decTree1.jpg' %}" width="46%">
+            <img style="margin:10px !important" src="{% static 'images/decTree2.jpg' %}" width="46%">
+            <img style="margin:10px !important" src="{% static 'images/decTree1.jpg' %}" width="46%">
         </div>
     </div>
 
