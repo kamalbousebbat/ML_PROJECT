@@ -1,10 +1,20 @@
 from django.shortcuts import render
 import os,joblib
 import numpy as np
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+
+def accueil(request):
+    return render(request,'accueil.html')
+
+@login_required(login_url='/user/login')
 def index(request):
     return render(request,'index.html')
+
+def about(request):
+    return render(request,'about.html')
 
 #Regression Logistique
 def regLog_details(request):

@@ -7,10 +7,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* ---------- Reset & base ---------- */
+        *{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --bg:#06080b;
+            --panel: rgba(255,255,255,0.04);
+            --glass: rgba(255,255,255,0.06);
+            --muted: #cfeaf6;
+            --accent1: #6fcbff;
+            --accent2: #9b7bff;
+            --accent3: #7fff81;
+            --glass-border: rgba(255,255,255,0.06);
+            --radius:16px;
+        }
+        body{
+            min-height:100vh;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background:
+            radial-gradient(1200px 600px at 10% 10%, rgba(111,203,255,0.03), transparent 8%),
+            radial-gradient(1000px 500px at 90% 80%, rgba(127,255,129,0.02), transparent 8%),
+            var(--bg);
+            color:#e6f6ff;
+            -webkit-font-smoothing:antialiased;
+            line-height:1.45;
+        }
+
+        a{color:inherit;text-decoration:none}
+        .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+        /* ---------- Header ---------- */
+        {% comment %} header{position:sticky;top:14px;z-index:60} {% endcomment %}
+        .nav-wrap{
+            display:flex;align-items:center;justify-content:space-between;gap:18px;
+            padding:14px 20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius:14px;border:1px solid var(--glass-border);backdrop-filter: blur(8px);
+            box-shadow:0 8px 30px rgba(2,8,23,0.6);
+            margin:0px 0;
+        }
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo {
+            font-weight:800;font-size:20px;
+            background:linear-gradient(45deg,var(--accent1),var(--accent2),var(--accent3));
+            -webkit-background-clip:text;background-clip:text;color:transparent;
+        }
+        nav{display:flex;gap:18px;align-items:center}
+        nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:rgba(230,246,255,0.88)}
+        nav a:hover{background:rgba(255,255,255,0.03);color:var(--accent1)}
+        .btn-ghost{padding:8px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);background:transparent}
+        .btn-primary{padding:10px 16px;border-radius:14px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#04121a;font-weight:700}
+
+        /* ---------- HERO ---------- */
+        .hero{
+            display:grid;grid-template-columns:1fr;gap:28px;align-items:center;min-height:68vh;padding:48px 0;
+        }
+        .hero-card{
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius:22px;padding:36px;border:1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 60px rgba(3,9,22,0.7);
+            display:flex;gap:28px;align-items:center;justify-content:space-between;
+        }
+        .hero-left{max-width:720px}
+        .hero h1{
+            font-size:44px;line-height:1.02;margin-bottom:12px;
+            background:linear-gradient(90deg,var(--accent1),#ff6ff7,var(--accent3));
+            -webkit-background-clip:text;color:transparent;font-weight:800;
+        }
+        .hero p{color:var(--muted);font-size:17px;margin-bottom:18px}
+        .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+        .hero-ctas a{display:inline-block}
+        /* Illustration */
+        .hero-illu{
+            width:360px;height:220px;border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.03);
+            background:linear-gradient(180deg, rgba(111,203,255,0.03), rgba(127,255,129,0.02));
+            display:grid;place-items:center;box-shadow: inset 0 -20px 40px rgba(0,0,0,0.25);
+        }
+
+        /* ---------- Sections shared styles ---------- */
+        section{padding:56px 0}
+        .section-title{text-align:center;font-size:28px;margin-bottom:18px;font-weight:800;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;color:transparent}
+        .lead{max-width:900px;margin:6px auto 28px;text-align:center;color:var(--muted)}
+
+        /* ---------- WHAT IS ML (two columns) ---------- */
+        .two-col{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+        .mini-illu{background:linear-gradient(180deg, rgba(111,203,255,0.06), rgba(127,255,129,0.02));border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.02);text-align:center}
+        .two-col .list{background:var(--panel);padding:18px;border-radius:12px;border:1px solid var(--glass-border)}
+
+        /* ---------- WHY IT MATTERS (cards grid) ---------- */
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+        .use-card{
+            padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border:1px solid var(--glass-border);backdrop-filter: blur(6px);transition:transform .28s, box-shadow .28s;
+        }
+        .use-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,255,200,0.06)}
+        .use-card .icon{width:56px;height:56px;border-radius:12px;display:grid;place-items:center;margin-bottom:10px;background:linear-gradient(135deg,#08111a,#0b1320)}
+        .use-card h4{font-size:18px;margin-bottom:6px;color:var(--accent2)}
+        .use-card p{color:var(--muted);font-size:14px}
+
+        /* ---------- ALGORITHMS PREVIEW (3 cards slider-like) ---------- */
+        .algos-wrap{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+        .algo-card{
+            width:260px;padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);
+            transition:transform .3s, box-shadow .3s;backdrop-filter: blur(8px);
+        }
+        .algo-card:hover{transform:translateY(-8px);box-shadow:0 14px 36px rgba(0,0,0,0.6)}
+        .algo-card .title{font-weight:800;color:var(--accent1);margin-bottom:8px}
+        .algo-card p{color:var(--muted);font-size:14px}
+
+        /* ---------- HOW IT WORKS (steps) ---------- */
+        .steps{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+        .step{
+            width:220px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass-border);
+            text-align:center;transition:transform .28s;
+        }
+        .step:hover{transform:translateY(-10px)}
+
+        /* ---------- TEAM ---------- */
+        .team{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+        .member{
+            width:260px;padding:18px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            border:1px solid var(--glass-border);text-align:center;transition:transform .28s;
+        }
+        .member:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,255,200,0.05)}
+        .avatar{
+            width:110px;height:110px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:36px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#04121a;
+            box-shadow:0 10px 30px rgba(0,0,0,0.5)
+        }
+        .role{color:var(--muted);font-size:13px;margin-top:8px}
+
+        /* ---------- CONTACT CTA ---------- */
+        .contact-cta{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:18px}
+        .contact-cta .card{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass-border)}
+        .contact-cta a.cta{display:inline-block;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#04121a;font-weight:700}
+
+        /* ---------- FOOTER ---------- */
+        footer{padding:28px 0 56px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.02)}
+        .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+        .footer-left{color:var(--muted)}
+        .footer-right a{margin-left:12px;color:var(--muted)}
+
+        /* ---------- Responsive ---------- */
+        @media (max-width:980px){
+            .two-col{grid-template-columns:1fr}
+            .hero-card{flex-direction:column;align-items:flex-start}
+            .hero-illu{width:100%;height:200px}
+        }
+        @media (max-width:640px){
+            .hero h1{font-size:28px}
+            .hero p{font-size:15px}
+        }
+
+        /* ---------- micro animations ---------- */
+        @keyframes fadeSlide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+        .appear{animation:fadeSlide .8s ease-out}
+    </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <!-- Header/Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    {% comment %} <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container">
             
             <a class="navbar-brand fs-2 d-flex align-items-center" href="/">
@@ -49,5 +204,31 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> {% endcomment %}
+    <header style="width:100%">
+      <div class="nav-wrap appear">
+        <div class="brand">
+          <div class="logo">AI Platform</div>
+        </div>
+        <nav aria-label="Main navigation">
+            <a href="{% url 'accueil' %}">Accueil</a>
+            <a href="{% url 'index' %}">Algorithmes</a>
+            <a href="{% url 'about' %}">À Propos</a>
+            {% comment %} <a href="{% url 'user:login' %}">Connexion</a>
+            <a href="{% url 'user:register' %}">Registrer</a> {% endcomment %}
+            {% if user.is_authenticated %}
+                <form action="{% url 'user:logout' %}" method="post" class="logout">
+                    {% csrf_token %}
+                    <button class="btn btn btn-outline-danger m-1" aria-label="User Logout" title= "User Logout">
+                        Déconnexion
+                    </button>
+                </form>
+            {% else %}
+                <a class="btn btn-primary m-1" href="{% url 'user:login' %}">Connexion</a>
+                <a class="btn btn btn-outline-light m-1" href="{% url 'user:register' %}">Registrer</a>
+            {% endif %}
+          
+        </nav>
+      </div>
+    </header>
 

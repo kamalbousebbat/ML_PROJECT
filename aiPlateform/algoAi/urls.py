@@ -4,7 +4,10 @@ from . import views
 # app_name = "algoAi"
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    
+    path('', views.accueil, name='accueil'),
+    path('algorithme', views.index, name='index'),
+    path('about', views.about, name='about'),
     path('reglog_details/',views.regLog_details,name='reglog_details'),
     path('reglog_atelier/',views.regLog_atelier,name='reglog_atelier'),
     path('reglog_tester/',views.regLog_tester,name='reglog_tester'),

@@ -1,0 +1,161 @@
+{% load static %}
+{% include "./includes/header.html" %}
+
+
+
+
+
+<body>
+      <style>
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #0c0f14;
+      color: #e8f7ff;
+    }
+
+    .about-section {
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 50px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 25px rgba(0, 255, 200, 0.2);
+      animation: fadeUp 1s ease-out;
+    }
+
+    .about-section h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      background: linear-gradient(45deg, #ff6ff7, #6fcbff, #7fff81);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .about-block {
+      padding: 30px;
+      margin-bottom: 35px;
+      background: rgba(255,255,255,0.03);
+      border-left: 4px solid #6fcbff;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .about-block:hover {
+      transform: translateX(8px);
+      box-shadow: 0 0 18px rgba(0, 255, 200, 0.15);
+    }
+
+    .about-block h3 {
+      font-size: 26px;
+      color: #7fff81;
+    }
+
+    .about-block h4 {
+      font-size: 20px;
+      margin-top: 15px;
+      color: #6fcbff;
+    }
+
+    .about-block ul {
+      margin-left: 20px;
+      line-height: 1.7;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+
+  <section id="about" class="about-section">
+
+    <h2>About Our Supervised Machine Learning Project</h2>
+
+    
+
+    <!-- Partie Projet Web -->
+    <div class="about-block">
+      <h3>🌐 About This Website</h3>
+      <p>
+        This website was created to explain Supervised Machine Learning in a simple,
+        modern and interactive way. The goal is to help beginners and students
+        understand the most common algorithms and concepts.
+      </p>
+
+      <h4>Technologies Used</h4>
+      <ul>
+        <li>HTML5 — Structure</li>
+        <li>CSS3 — Modern UI & animations</li>
+        <li>JavaScript — Interactivity and dynamic elements</li>
+        <li>Python</li>
+        <li>framwork - Django </li>
+        <li>Git - github</li>
+      </ul>
+
+      <h4>This Website Is For</h4>
+      <ul>
+        <li>Students learning ML</li>
+        <li>Beginners and AI enthusiasts</li>
+        <li>Anyone curious about Machine Learning</li>
+      </ul>
+
+      <h4>Our Vision</h4>
+      <p>
+        To make Machine Learning accessible, simple, and enjoyable for everyone.
+      </p>
+    </div>
+
+    <!-- Partie Professionnelle -->
+    <div class="about-block">
+      <h3>🎯 Our Mission</h3>
+      <ul>
+        <li>Democratize access to Machine Learning knowledge</li>
+        <li>Provide clear, intuitive and interactive explanations</li>
+        <li>Offer 100% free educational resources</li>
+        <li>Encourage students to explore the world of AI</li>
+      </ul>
+    </div>
+
+    <!-- Partie Développeurs -->
+    <div class="about-block">
+      <h3>💻 Behind the Code</h3>
+      <p>Created by a team of three passionate developers:</p>
+      <ul>
+        <li> Salma Belaicha</li>
+        <li> Qamar Maarouf</li>
+        <li> Kamal Bousebbat</li>
+      </ul>
+
+      <h4>Tech Stack</h4>
+      <ul>
+        <li>HTML, CSS, JavaScript</li>
+        <li>Responsive layout</li>
+        <li>Modern animations and UI design</li>
+      </ul>
+
+      <h4>Why This Machine Learning Theme?</h4>
+      <p>
+        Because Machine Learning is shaping the future. Our goal was to create
+        a clean and modern educational platform that simplifies ML concepts.
+      </p>
+
+      <h4>Next Improvements</h4>
+      <ul>
+        <li>Interactive algorithm animations</li>
+        <li>3D visualizations</li>
+        <li>Quizzes and practice exercises</li>
+        <li>Machine Learning project examples</li>
+      </ul>
+    </div>
+
+  </section>
+
+
+
+{% include "./includes/footer.html" %}

@@ -2,9 +2,83 @@
 
     <!-- Bootstrap JS CDN -->
      <div class="mt-5"></div>
-    <footer class="bg-dark text-white text-center mt-5 py-3  mt-auto">
+    {% comment %} <footer class="bg-dark text-white text-center mt-5 py-3  mt-auto">
         <p>&copy; 2025-2026 AI Platform. Pr. Mohammed AMEKSA - All rights reserved.</p>
+    </footer> {% endcomment %}
+    <footer style="background:#0d1117; color:#f0f6fc; padding:40px 20px;width:100%">
+
+        <div style="max-width:1200px; margin:auto; display:grid; 
+                    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+                    gap:40px;">
+
+            <!-- Liens Rapides -->
+            <div>
+                <h3 style="color:#3b82f6; margin-bottom:15px;"> Liens rapides</h3>
+                <ul style="list-style:none; padding:0;">
+                    <li><a href="#" style="color:#f0f6fc; text-decoration:none;">Accueil</a></li>
+                    <li><a href="#" style="color:#f0f6fc; text-decoration:none;">Algorithmes</a></li>
+                    <li><a href="#" style="color:#f0f6fc; text-decoration:none;">About</a></li>
+                    <li><a href="#" style="color:#f0f6fc; text-decoration:none;">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Ressources -->
+            <div>
+                <h3 style="color:#3b82f6; margin-bottom:15px;"> Ressources</h3>
+                <ul style="list-style:none; padding:0;">
+                    <li><a href="#" style="color:#f0f6fc; text-decoration:none;">Documentation Scikit-learn</a></li>
+                    <li><a href="#" style="color:#f0f6fc; text-decoration:none;">Cours gratuits ML (Coursera)</a></li>
+                    <li><a href="#" style="color:#f0f6fc; text-decoration:none;">Tutoriels Machine Learning</a></li>
+                    <li><a href="#" style="color:#f0f6fc; text-decoration:none;">GitHub du projet</a></li>
+                </ul>
+            </div>
+
+            <!-- Auteurs -->
+            <div>
+                <h3 style="color:#3b82f6; margin-bottom:15px;"> Auteurs</h3>
+                <p>Ce site a été créé par :</p>
+                <ul style="list-style:none; padding:0;">
+                    <li> Salma Belaicha</li>
+                    <li> Qamar Maarouf</li>
+                    <li> Kamal Bousebbat</li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h3 style="color:#3b82f6; margin-bottom:15px;"> Contact</h3>
+                <p><a href="#" style="color:#f0f6fc;">salmabelaicha665@gmail.com</a></p>
+                <p><a href="#" style="color:#f0f6fc;">bousebbatk@gmail.com</a></p>
+                <p><a href="#" style="color:#f0f6fc;">qamarmaarouf60@gmail.com</a></p>
+            </div>
+
+        </div>
+
+        <!-- Ligne finale -->
+        <div style="text-align:center; margin-top:40px; padding-top:20px; 
+                    border-top:1px solid #3b82f6;">
+            © 2025 — Tous droits réservés. Site éducatif dédié au Machine Learning.
+        </div>
+
     </footer>
+    <script>
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+            a.addEventListener('click', e=>{
+            const href = a.getAttribute('href');
+            if(href.length>1){
+                e.preventDefault();
+                const el = document.querySelector(href);
+                if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+            }
+            });
+        });
+
+        // Small: keyboard focus visible enhancement
+        document.addEventListener('keydown', (e)=>{
+            if(e.key === 'Tab') document.documentElement.style.scrollBehavior = 'smooth';
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,184 @@
+{% load static %}
+{% include "./includes/header.html" %}
+
+
+    <!-- HERO -->
+    <main id="home" class="hero appear">
+      <div class="hero-card container">
+        <div class="hero-left">
+          <h1>Supervised Machine Learning <br><span style="font-size:18px;font-weight:600;color:var(--muted)">Explained Simply / Comprendre le Machine Learning Supervisé en Une Page</span></h1>
+          <p>Algorithmes, concepts, exemples réels, visualisations… tout en un seul site. Parcourez, apprenez et expérimentez.</p>
+          <div class="hero-ctas">
+            <a class="btn-primary" href="#algos">🔍 Explorer les Algorithmes</a>
+            <a class="btn-ghost" href="#what">📄 Télécharger le mini-guide (PDF)</a>
+          </div>
+        </div>
+
+        <div class="hero-illu" aria-hidden="true">
+          <!-- simple decorative SVG stylized neural net -->
+          <svg width="320" height="180" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#6fcbff"/><stop offset="1" stop-color="#7fff81"/></linearGradient>
+            </defs>
+            <rect x="4" y="4" rx="12" ry="12" width="312" height="172" fill="none" stroke="rgba(255,255,255,0.03)"/>
+            <g fill="none" stroke="url(#g)" stroke-width="2">
+              <circle cx="60" cy="50" r="6" />
+              <circle cx="160" cy="30" r="6" />
+              <circle cx="260" cy="60" r="6" />
+              <circle cx="110" cy="120" r="6" />
+              <circle cx="210" cy="110" r="6" />
+              <path d="M60 50 C110 60, 140 40,160 30" />
+              <path d="M160 30 C190 50,240 40,260 60" />
+              <path d="M60 50 C90 90,110 110,110 120" />
+              <path d="M110 120 C160 140,190 120,210 110" />
+              <path d="M210 110 C230 100,250 80,260 60" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </main>
+
+    <!-- WHAT IS ML -->
+    <section id="what" class="appear">
+      <div class="section-title">What is Supervised Learning?</div>
+      <p class="lead">Un apprentissage où le modèle apprend à partir d'exemples étiquetés (input → label). Deux usages principaux : classification et régression.</p>
+
+      <div class="two-col container">
+        <div>
+          <div class="list">
+            <h3 style="color:var(--accent2);margin-bottom:8px">Définition simple</h3>
+            <p style="color:var(--muted)">Le supervised learning consiste à entraîner un modèle à partir d'un jeu de données comportant des paires (entrée, étiquette). Le modèle apprend une fonction qui prédit l'étiquette à partir de nouvelles entrées.</p>
+
+            <h4 style="color:var(--accent1);margin-top:14px">Types</h4>
+            <ul style="color:var(--muted);margin-top:8px;line-height:1.7">
+              <li><strong>Classification</strong> — Prédire des classes (ex : spam ou non spam).</li>
+              <li><strong>Régression</strong> — Prédire une valeur continue (ex : prix d'une maison).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mini-illu">
+          <!-- small schematic illustration showing data -> model -> prediction -->
+          <svg width="340" height="220" viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" rx="12" ry="12" width="328" height="208" fill="none" stroke="rgba(255,255,255,0.03)"/>
+            <g fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.6">
+              <rect x="22" y="34" width="80" height="38" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.03)"/>
+              <text x="62" y="58" fill="#cfeaf6" font-size="12" font-weight="700" text-anchor="middle">Données</text>
+
+              <rect x="126" y="80" width="90" height="48" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.03)"/>
+              <text x="171" y="108" fill="#cfeaf6" font-size="12" font-weight="700" text-anchor="middle">Modèle</text>
+
+              <rect x="244" y="34" width="70" height="38" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.03)"/>
+              <text x="279" y="58" fill="#cfeaf6" font-size="12" font-weight="700" text-anchor="middle">Prédiction</text>
+
+              <path d="M102 52 L126 102" stroke="url(#g)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M216 102 L244 52" stroke="url(#g)" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <defs>
+              <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#6fcbff"/><stop offset="1" stop-color="#7fff81"/></linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT MATTERS -->
+    <section id="why" class="appear">
+      <div class="section-title">Why it matters</div>
+      <p class="lead">Le supervised learning alimente des systèmes qui améliorent la vie quotidienne, la sécurité et l'efficacité industrielle.</p>
+
+      <div class="grid container">
+        <div class="use-card">
+          <div class="icon">🏥</div>
+          <h4>Prédiction médicale</h4>
+          <p class="muted">Aider au diagnostic, prédire l'évolution d'une maladie, personnaliser les traitements.</p>
+        </div>
+
+        <div class="use-card">
+          <div class="icon">🚗</div>
+          <h4>Voitures autonomes</h4>
+          <p class="muted">Détection d'obstacles, lecture de panneaux, prise de décision en temps réel.</p>
+        </div>
+
+        <div class="use-card">
+          <div class="icon">🎧</div>
+          <h4>Recommandations</h4>
+          <p class="muted">Personnalisation des contenus (musique, vidéos, produits) basée sur l'historique utilisateur.</p>
+        </div>
+
+        <div class="use-card">
+          <div class="icon">🛒</div>
+          <h4>Détection de fraude</h4>
+          <p class="muted">Identifier les transactions anormales et réduire les pertes financières.</p>
+        </div>
+
+    
+      </div>
+    </section>
+
+
+
+    <!-- HOW THIS WEBSITE WORKS -->
+    <section id="how" class="appear">
+      <div class="section-title">How This Website Works</div>
+      <p class="lead">Un parcours simple pour progresser : lire, explorer, visualiser et pratiquer.</p>
+
+      <div class="steps container">
+        <div class="step">
+          <div style="font-size:28px;margin-bottom:8px">📘</div>
+          <h4>Lire</h4>
+          <p style="color:var(--muted)">Articles courts et illustrations pour comprendre l'intuition.</p>
+        </div>
+
+        <div class="step">
+          <div style="font-size:28px;margin-bottom:8px">🧠</div>
+          <h4>Explorer</h4>
+          <p style="color:var(--muted)">Fiches d'algorithmes et démonstrations interactives.</p>
+        </div>
+
+        <div class="step">
+          <div style="font-size:28px;margin-bottom:8px">📊</div>
+          <h4>Visualiser</h4>
+          <p style="color:var(--muted)">Graphiques et exemples pour voir le modèle en action.</p>
+        </div>
+
+        <div class="step">
+          <div style="font-size:28px;margin-bottom:8px">🎓</div>
+          <h4>Pratiquer</h4>
+          <p style="color:var(--muted)">Exercices, datasets et liens vers tutoriels pratiques.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="appear">
+      <div class="section-title">Meet the Team</div>
+      <p class="lead">Équipe de trois créateurs passionnés qui ont conçu ce site.</p>
+
+      <div class="team container">
+        <div class="member">
+          <div class="avatar">SB</div>
+          <div style="font-weight:800;margin-top:8px">Salma Belaicha</div>
+          <div class="role">Etudiante IASD </div>
+          <a href="https://github.com/salma-code-it" style="color:var(--muted);margin-top:10px;font-size:14px">https://github.com/salma-code-it</a>
+        </div>
+
+        <div class="member">
+          <div class="avatar">QM</div>
+          <div style="font-weight:800;margin-top:8px">Qamar Maarouf</div>
+          <div class="role">Etudiante IASD</div>
+          <a href="https://github.com/qamarmaarouf60-cpu" style="color:var(--muted);margin-top:10px;font-size:14px">https://github.com/qamarmaarouf60-cpu</a>
+        </div>
+
+        <div class="member">
+          <div class="avatar">KB</div>
+          <div style="font-weight:800;margin-top:8px">Kamal Bousebbat</div>
+          <div class="role">Etudiant IASD</div>
+          <a href="https://github.com/kamalbousebbat" style="color:var(--muted);margin-top:10px;font-size:14px">https://github.com/kamalbousebbat</a>
+        </div>
+      </div>
+    </section>
+
+
+
+{% include "./includes/footer.html" %}

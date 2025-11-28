@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% include "./includes/header.html" %}
 
-<div class="container mt-5">
+{% comment %} <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-5">
             <div class="card shadow-sm">
@@ -44,6 +44,279 @@
             </div>
         </div>
     </div>
-</div>
+</div> {% endcomment %}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000000;
+        position: relative;
+        overflow-x: hidden;
+        padding: 0px 0;
+    }
+
+    /* 🔵 Floating particles (BLUE) */
+    .particle {
+        position: absolute;
+        background: rgba(0, 140, 255, 0.25);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: float 15s infinite;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) translateX(0);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100vh) translateX(100px);
+            opacity: 0;
+        }
+    }
+
+    .register-container {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 800px;
+        padding: 20px;
+        animation: slideIn 0.6s ease-out;
+        min-height: 800px;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .register-card {
+        background: rgba(20, 20, 20, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+                    0 0 1px rgba(0, 102, 255, 0.5);
+        overflow: hidden;
+        border: 1px solid rgba(0, 102, 255, 0.3); /* BLUE BORDER */
+        min-height: 880px;
+    }
+
+    .register-header {
+        background: linear-gradient(135deg, #1e3a8a 0%, #0a0f33 100%);
+        padding: 40px 30px;
+        text-align: center;
+        color: white;
+        position: relative;
+    }
+
+    .register-header::before {
+        content: '✨';
+        font-size: 4rem;
+        display: block;
+        margin-bottom: 10px;
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .register-header h2 {
+        font-size: 2rem;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .register-header p {
+        font-size: 0.95rem;
+        opacity: 0.9;
+    }
+
+    .register-body {
+        padding: 40px 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #e0e0e0;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .input-wrapper {
+        position: relative;
+    }
+
+    /* 🔵 BLUE BORDER INPUT */
+    .form-control {
+        width: 100%;
+        padding: 13px 13px 13px 45px;
+        border: 2px solid rgba(0, 140, 255, 0.4);
+        border-radius: 12px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        background: rgba(30, 30, 30, 0.8);
+        color: #ffffff;
+    }
+
+    .form-control:focus {
+        outline: none !important;
+        color:white !important;
+        border-color: #1d4ed8; /* BLUE */
+        background: rgba(40, 40, 40, 0.9);
+        box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.35);
+    }
+
+    .password-toggle {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    .password-toggle:hover {
+        color: #1e90ff;
+    }
+
+    .alert-danger {
+        background: rgba(220, 53, 69, 0.2);
+        color: #ff6b6b;
+        border: 1px solid rgba(220, 53, 69, 0.4);
+    }
+
+    .error-message {
+        color: #ff6b6b;
+        font-size: 0.85rem;
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* 🔵 Button Blue */
+    .btn-register {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #1e3a8a 0%, #0a0f33 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-register:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 102, 255, 0.45);
+    }
+    .register-footer{
+        color: white;
+        text-align: center;
+    }
+    .register-footer a {
+        color: white;
+        padding-left:50px;
+    }
+    .register-footer a:hover {
+        color: #60a5fa;
+    }
+</style>
+
+<!-- Floating Particles (BLUE) -->
+    <div class="particle" style="width: 50px; height: 50px; left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="width: 30px; height: 30px; left: 30%; animation-delay: 2s;"></div>
+    <div class="particle" style="width: 40px; height: 40px; left: 50%; animation-delay: 4s;"></div>
+    <div class="particle" style="width: 60px; height: 60px; left: 70%; animation-delay: 1s;"></div>
+    <div class="particle" style="width: 35px; height: 35px; left: 85%; animation-delay: 3s;"></div>
+
+    <div class="register-container">
+        <div class="register-card">
+            <div class="register-header">
+                <h2>Créer un compte</h2>
+                <p>Rejoignez notre plateforme ML</p>
+            </div>
+
+            <div class="register-body">
+                <form id="registerForm" action="/user/register" method="post">
+                    {% csrf_token %}
+                    <!-- Affichage des erreurs globales -->
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            {{ field|add_class:"form-control" }}
+                            
+                            {% if field.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ field.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    
+
+                    
+
+                    
+
+                    <button type="submit" class="btn-register">Créer mon compte</button>
+                </form>
+            </div>
+
+            <div class="register-footer">
+                Vous avez déjà un compte ? <a href="{% url 'user:login' %}">Connectez-vous</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(fieldId) {
+            const input = document.getElementById(fieldId);
+            input.type = input.type === "password" ? "text" : "password";
+        }
+    </script>
 
 {% include "./includes/footer.html" %}
