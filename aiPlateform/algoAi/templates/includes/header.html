@@ -57,6 +57,15 @@
         .btn-ghost{padding:8px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);background:transparent}
         .btn-primary{padding:10px 16px;border-radius:14px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#04121a;font-weight:700}
 
+        /* Btn de Deconnexion */
+        #btnDecon{
+            color: white;
+            border: 1px solid blue;
+        }
+        #btnDecon:hover{
+            background:linear-gradient(90deg,var(--accent1),var(--accent2));
+            border: none;
+        }
         /* ---------- HERO ---------- */
         .hero{
             display:grid;grid-template-columns:1fr;gap:28px;align-items:center;min-height:68vh;padding:48px 0;
@@ -219,7 +228,7 @@
             {% if user.is_authenticated %}
                 <form action="{% url 'user:logout' %}" method="post" class="logout">
                     {% csrf_token %}
-                    <button  style ="width:100% !important;" class="btn btn btn-outline-danger m-1" aria-label="User Logout" title= "User Logout">
+                    <button  style ="width:100% !important;" id="btnDecon" class="btn btn m-1" aria-label="User Logout" title= "User Logout">
                         Déconnexion
                     </button>
                 </form>
