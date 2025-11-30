@@ -1,0 +1,49 @@
+# Projet Django + Machine Learning (Supervised Learning)
+
+## 1. Prérequis
+Assurez-vous d’avoir installé :
+- Python 3.11 ou plus
+- pip
+- virtualenv
+- Git
+- Un navigateur web
+
+---------------------------------------------
+
+## 2. Cloner le projet
+git clone https://github.com/ML_PROJECT.git
+cd ML_PROJECT
+
+-----------------------------------------------
+
+## 3. Créer un environnement virtuel
+python -m venv venv
+
+### Activer l’environnement :
+
+# Windows
+venv\Scripts\activate
+
+-------------------------------------------
+
+## 4. Installer les dépendances
+pip install -r requirements.txt
+
+----------------------------------------
+
+## 5. Migrer la base de données
+python manage.py makemigrations
+python manage.py migrate
+
+---
+
+## 6. Créer un superuser (admin)
+python manage.py createsuperuser
+
+---
+
+## 7. Lancer le serveur
+python manage.py runserver
+
+Ouvrir dans le navigateur :
+http://127.0.0.1:8000/
