@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 import os,joblib
 import numpy as np
 from django.contrib.auth.decorators import login_required
+from .models import classdataset , FitnessDataset
+
 
 
 # Create your views here.
@@ -54,6 +56,8 @@ def reglog_prediction(request):
         ever_benched = request.POST.get('EverBenched')  # "Yes" ou "No"
         experience = float(request.POST.get('ExperienceInCurrentDomain'))
 
+        
+
         if(education.lower()=='Bachelors'):
             education_model=0
         elif(education.lower()=='Masters'):
@@ -97,6 +101,20 @@ def reglog_prediction(request):
         pred_vehicule = employee_leave[predicted_class]
         pred_img = img_url[pred_vehicule]
         
+        predect = classdataset.objects.create(
+        user=request.user,  # Associe automatiquement l'utilisateur connecté
+        model_name ="regression logestic",
+        niveau_etude = education,
+        ville = city,
+        age = str(age),
+        affectation = ever_benched,
+        annee_ambauche = str(joining_year),
+        salaire_cat = str(payment_tier),
+        gender = gender,
+        experience_domain = str(experience),
+        target=pred_vehicule
+         )
+
         # Tâche 6 : Préparer le Plateau-Repas (context)
         input_data = {
             'education':education,
@@ -199,6 +217,26 @@ def Reg_Linear_prediction(request):
         prediction = model.predict(features_final)
         calories_pred = round(float(prediction[0]), 2)
         
+        FitnessDataset.objects.create(
+            user=request.user,
+            model_name="Regression lineare",
+            age=age,
+            gender=gender,
+            weight=weight,
+            height=height,
+            bmi=bmi,
+            fat_percentage=fat_percentage,
+            max_bpm=max_bpm,
+            avg_bpm=avg_bpm,
+            resting_bpm=resting_bpm,
+            session_duration=session_duration,
+            workout_type=workout_type,
+            water_intake=water_intake,
+            workout_frequency=workout_freq,
+            experience_level=exp_val,
+            target=calories_pred
+        )
+
         # Choisir image selon genre
         if gender.lower() == "male":
            img_path = "images/SVRimage2.jpg"
@@ -252,6 +290,8 @@ def decTree_prediction(request):
         ever_benched = request.POST.get('EverBenched')  # "Yes" ou "No"
         experience = float(request.POST.get('ExperienceInCurrentDomain'))
 
+        
+
         if(education.lower()=='Bachelors'):
             education_model=0
         elif(education.lower()=='Masters'):
@@ -282,12 +322,6 @@ def decTree_prediction(request):
         prediction = model.predict([[education_model,joining_year,payment_tier,age,gender_model,ever_benched_model,experience,City_Bangalore,City_New_Delhi,City_Pune]])
         predicted_class = prediction[0]
 
-        # Debug : afficher la prédiction dans la console
-        print("=== DEBUG ===")
-        print("Input DataFrame :")
-        print(predicted_class)
-        print("Predicted Class :", predicted_class)
-        print("================")
         
         # Tâche 5 : Traduire la Réponse
         employee_leave = {0: 'NOT LEAVING', 1: 'LEAVING'}
@@ -295,6 +329,20 @@ def decTree_prediction(request):
         pred_vehicule = employee_leave[predicted_class]
         pred_img = img_url[pred_vehicule]
         
+        predect = classdataset.objects.create(
+        user=request.user,  # Associe automatiquement l'utilisateur connecté
+        model_name ="Decesion Tree",
+        niveau_etude = education,
+        ville = city,
+        age = str(age),
+        affectation = ever_benched,
+        annee_ambauche = str(joining_year),
+        salaire_cat = str(payment_tier),
+        gender = gender,
+        experience_domain = str(experience),
+        target=pred_vehicule
+         )
+
         # Tâche 6 : Préparer le Plateau-Repas (context)
         input_data = {
             'education':education,
@@ -341,6 +389,7 @@ def randforest_prediction(request):
         ever_benched = request.POST.get('EverBenched')  # "Yes" ou "No"
         experience = float(request.POST.get('ExperienceInCurrentDomain'))
 
+
         if(education.lower()=='bachelors'):
             education_model=0
         elif(education.lower()=='masters'):
@@ -371,18 +420,26 @@ def randforest_prediction(request):
         prediction = model.predict([[education_model,joining_year,payment_tier,age,gender_model,ever_benched_model,experience,City_Bangalore,City_New_Delhi,City_Pune]])
         predicted_class = prediction[0]
 
-        # Debug : afficher la prédiction dans la console
-        print("=== DEBUG ===")
-        print("Input DataFrame :")
-        print(predicted_class)
-        print("Predicted Class :", predicted_class)
-        print("================")
         
         # Tâche 5 : Traduire la Réponse
         employee_leave = {0: 'NOT LEAVING', 1: 'LEAVING'}
         img_url = {'NOT LEAVING':'images/random_forest1.jpeg', 'LEAVING':'images/decTree2.jpg'}
         pred_vehicule = employee_leave[predicted_class]
         pred_img = img_url[pred_vehicule]
+        
+        predect = classdataset.objects.create(
+        user=request.user,  # Associe automatiquement l'utilisateur connecté
+        model_name ="Random Forest",
+        niveau_etude = education,
+        ville = city,
+        age = str(age),
+        affectation = ever_benched,
+        annee_ambauche = str(joining_year),
+        salaire_cat = str(payment_tier),
+        gender = gender,
+        experience_domain = str(experience),
+        target=pred_vehicule
+         )
         
         # Tâche 6 : Préparer le Plateau-Repas (context)
         input_data = {
@@ -430,6 +487,7 @@ def SVM_prediction(request):
         ever_benched = request.POST.get('EverBenched')  # "Yes" ou "No"
         experience = float(request.POST.get('ExperienceInCurrentDomain'))
 
+
         if(education.lower()=='Bachelors'):
             education_model=0
         elif(education.lower()=='Masters'):
@@ -473,6 +531,20 @@ def SVM_prediction(request):
         pred_vehicule = employee_leave[predicted_class]
         pred_img = img_url[pred_vehicule]
         
+        predect = classdataset.objects.create(
+        user=request.user,  # Associe automatiquement l'utilisateur connecté
+        model_name ="SVM",
+        niveau_etude = education,
+        ville = city,
+        age = str(age),
+        affectation = ever_benched,
+        annee_ambauche = str(joining_year),
+        salaire_cat = str(payment_tier),
+        gender = gender,
+        experience_domain = str(experience),
+        target=pred_vehicule
+         )
+
         # Tâche 6 : Préparer le Plateau-Repas (context)
         input_data = {
             'education':education,
@@ -578,6 +650,26 @@ def decTreeReg_prediction(request):
         # === 5) Prediction ===
         prediction = model.predict(features)
         predicted_value = round(float(prediction[0]), 2)
+
+        FitnessDataset.objects.create(
+            user=request.user,
+            model_name="Decision Tree ",
+            age=age,
+            gender=gender,
+            weight=weight,
+            height=height,
+            bmi=bmi,
+            fat_percentage=fat_percent,
+            max_bpm=max_bpm,
+            avg_bpm=avg_bpm,
+            resting_bpm=resting_bpm,
+            session_duration=session_duration,
+            workout_type=workout_type,
+            water_intake=water_intake,
+            workout_frequency=workout_frequency,
+            experience_level=experience_level,
+            target=predicted_value
+        )
 
         # Choisir image selon genre
         if gender.lower() == "male":
@@ -685,6 +777,26 @@ def SVM_Reg_prediction(request):
         # Prédiction
         prediction = model.predict(features_final)
         calories_pred = round(float(prediction[0]), 2)
+
+        FitnessDataset.objects.create(
+            user=request.user,
+            model_name="SVM",
+            age=age,
+            gender=gender,
+            weight=weight,
+            height=height,
+            bmi=bmi,
+            fat_percentage=fat_percentage,
+            max_bpm=max_bpm,
+            avg_bpm=avg_bpm,
+            resting_bpm=resting_bpm,
+            session_duration=session_duration,
+            workout_type=workout_type,
+            water_intake=water_intake,
+            workout_frequency=workout_freq,
+            experience_level=exp_val,
+            target=calories_pred
+        )
         
         # Choisir image selon genre
         if gender.lower() == "male":
@@ -790,6 +902,26 @@ def RFR_prediction(request):
         prediction = model.predict(features)
         calories_pred = round(float(prediction[0]), 2)
         
+        FitnessDataset.objects.create(
+            user=request.user,
+            model_name="Random Forest",
+            age=age,
+            gender=gender,
+            weight=weight,
+            height=height,
+            bmi=bmi,
+            fat_percentage=fat_percentage,
+            max_bpm=max_bpm,
+            avg_bpm=avg_bpm,
+            resting_bpm=resting_bpm,
+            session_duration=session_duration,
+            workout_type=workout_type,
+            water_intake=water_intake,
+            workout_frequency=workout_freq,
+            experience_level=exp_val,
+            target=calories_pred
+        )
+
         # Choisir image selon genre
         if gender.lower() == "male":
            img_path = "images/SVRimage2.jpg"
@@ -881,7 +1013,21 @@ def XGboost_prediction(request):
         img_url = {'NOT LEAVING':'images/random_forest1.jpeg', 'LEAVING':'images/decTree2.jpg'}
         pred_vehicule = employee_leave[predicted_class]
         pred_img = img_url[pred_vehicule]
-        
+
+        predect = classdataset.objects.create(
+        user=request.user,  # Associe automatiquement l'utilisateur connecté
+        model_name ="XGboost",
+        niveau_etude = education,
+        ville = city,
+        age = str(age),
+        affectation = ever_benched,
+        annee_ambauche = str(joining_year),
+        salaire_cat = str(payment_tier),
+        gender = gender,
+        experience_domain = str(experience),
+        target=pred_vehicule
+         )
+
         # Tâche 6 : Préparer le Plateau-Repas (context)
         input_data = {
             'education':education,
@@ -987,6 +1133,26 @@ def XGBReg_prediction(request):
         prediction = model.predict(features)
         predicted_value = round(float(prediction[0]), 2)
 
+        FitnessDataset.objects.create(
+            user=request.user,
+            model_name="XGboost",
+            age=age,
+            gender=gender,
+            weight=weight,
+            height=height,
+            bmi=bmi,
+            fat_percentage=fat_percent,
+            max_bpm=max_bpm,
+            avg_bpm=avg_bpm,
+            resting_bpm=resting_bpm,
+            session_duration=session_duration,
+            workout_type=workout_type,
+            water_intake=water_intake,
+            workout_frequency=workout_frequency,
+            experience_level=experience_level,
+            target=predicted_value
+        )
+
         # Choisir image selon genre
         if gender.lower() == "male":
            img_path = "images/DecTreeRegH.jpeg"
@@ -1016,3 +1182,21 @@ def XGBReg_prediction(request):
         return render(request, 'XGboost_Regression/XGBReg_results.html', context)
 
     return render(request, 'XGboost_Regression/calories_form.html')
+
+
+
+# historique
+
+
+@login_required(login_url='/user/login')
+def liste_predictions_view(request):
+    predictions = request.user.predictions.all()
+    return render(request, 'mes_predections.html', {'predections': predictions})
+
+
+@login_required(login_url='/user/login')
+def liste_fitness_predictions(request):
+    """Affiche toutes les prédictions fitness de l'utilisateur"""
+    predictions = request.user.fitness_predictions.all()
+    print(predictions)
+    return render(request, 'liste_predictions.html', {'predictions': predictions})
