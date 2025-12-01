@@ -57,4 +57,9 @@ urlpatterns = [
     path('XGBReg_atelier/',views.XGBReg_atelier,name='XGBReg_atelier'),
     path('XGBReg_tester/',views.XGBReg_tester,name='XGBReg_tester'),
     path('XGBReg_prediction/',views.XGBReg_prediction,name='XGBReg_prediction'),
+
+    #historique
+        path('predictions/', views.liste_predictions_view, name='liste_predictions'),
+        path('fitness/predictions/', views.liste_fitness_predictions, name='liste_fitness_predictions'),
+
 ]
