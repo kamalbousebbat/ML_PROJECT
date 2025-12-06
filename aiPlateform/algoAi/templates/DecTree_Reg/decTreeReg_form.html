@@ -15,7 +15,7 @@
                 <!-- Age -->
                 <div class="mb-4">
                     <label for="age" class="form-label">Âge</label>
-                    <input type="number" class="form-control" id="age" name="Age" min="10" max="90" value="30">
+                    <input type="number" class="form-control" id="age" name="Age"  value="28">
                 </div>
 
                 <!-- Gender -->
@@ -30,37 +30,37 @@
                 <!-- Weight -->
                 <div class="mb-4">
                     <label for="weight" class="form-label">Poids (kg)</label>
-                    <input type="number" step="0.1" class="form-control" id="weight" name="Weight">
+                    <input type="number" step="0.1" class="form-control" id="weight" name="Weight (kg)" value="70">
                 </div>
 
                 <!-- Height -->
                 <div class="mb-4">
                     <label for="height" class="form-label">Taille (m)</label>
-                    <input type="number" step="0.01" class="form-control" id="height" name="Height">
+                    <input type="number" step="0.01" class="form-control" id="height" name="Height (m)"  value="1.70">
                 </div>
 
                 <!-- Max BPM -->
                 <div class="mb-4">
-                    <label for="max_bpm" class="form-label">Fréquence cardiaque maximale</label>
-                    <input type="number" class="form-control" id="max_bpm" name="Max_BPM">
+                    <label for="max_bpm" class="form-label">Fréquence Cardiaque Maximale (BPM)</label>
+                    <input type="number" class="form-control" id="max_bpm" name="Max_BPM"  value="180">
                 </div>
 
                 <!-- Avg BPM -->
                 <div class="mb-4">
-                    <label for="avg_bpm" class="form-label">Fréquence cardiaque moyenne</label>
-                    <input type="number" class="form-control" id="avg_bpm" name="Avg_BPM">
+                    <label for="avg_bpm" class="form-label">Fréquence Cardiaque Moyenne (BPM)</label>
+                    <input type="number" class="form-control" id="avg_bpm" name="Avg_BPM"  value="140">
                 </div>
 
                 <!-- Resting BPM -->
                 <div class="mb-4">
-                    <label for="resting_bpm" class="form-label">BPM au repos</label>
-                    <input type="number" class="form-control" id="resting_bpm" name="Resting_BPM">
+                    <label for="rest_bpm" class="form-label">Fréquence Cardiaque au Repos (BPM)</label>
+                    <input type="number" class="form-control" id="rest_bpm" name="Resting_BPM"  value="60">
                 </div>
 
                 <!-- Session Duration -->
                 <div class="mb-4">
-                    <label for="session_duration" class="form-label">Durée de la session (heures)</label>
-                    <input type="number"  step="any" class="form-control" id="session_duration" name="Session_Duration">
+                    <label for="session_duration" class="form-label">Durée de la séance (heures)</label>
+                    <input type="number" step="0.1" class="form-control" id="session_duration" name="Session_Duration (hours)" value="1.5">
                 </div>
 
                 <!-- Workout Type -->
@@ -68,47 +68,48 @@
                     <label for="workout_type" class="form-label">Type d'entraînement</label>
                     <select class="form-select" id="workout_type" name="Workout_Type">
                         <option value="Cardio">Cardio</option>
-                        <option value="Strength">Strength</option>
-                        <option value="HIIT">HIIT</option>
+                        <option value="Strength">Musculation</option>
                         <option value="Yoga">Yoga</option>
-                        <option value="Other">Autre</option>
+                        <option value="HIIT">HIIT</option>
+                        <option value="Other">Cyclisme</option>
                     </select>
                 </div>
 
                 <!-- Fat Percentage -->
                 <div class="mb-4">
-                    <label for="fat" class="form-label">Pourcentage de graisse</label>
-                    <input type="number" step="0.1" class="form-control" id="fat" name="Fat_Percentage">
+                    <label for="fat_percentage" class="form-label">% Masse Grasse</label>
+                    <input type="number" step="0.1" class="form-control" id="fat_percentage" name="Fat_Percentage"  value="18">
                 </div>
 
                 <!-- Water Intake -->
                 <div class="mb-4">
-                    <label for="water" class="form-label">Eau consommée (litres)</label>
-                    <input type="number" step="0.1" class="form-control" id="water" name="Water_Intake">
+                    <label for="water_intake" class="form-label">Hydratation (litres/jour)</label>
+                    <input type="number" step="0.1" class="form-control" id="water_intake" name="Water_Intake (liters)"  value="2.5">
                 </div>
 
                 <!-- Workout Frequency -->
                 <div class="mb-4">
-                    <label for="frequency" class="form-label">Fréquence des entraînements (jours/semaine)</label>
-                    <input type="number" class="form-control" id="frequency" name="Workout_Frequency">
+                    <label for="workout_frequency" class="form-label">Fréquence sportive (jours/semaine)</label>
+                    <input type="number" class="form-control" id="workout_frequency" name="Workout_Frequency (days/week)" value="4">
                 </div>
 
                 <!-- Experience Level -->
                 <div class="mb-4">
-                    <label for="experience_level" class="form-label">Expérience (années)</label>
-                    <input type="number" class="form-control" id="experience_level" name="Experience_Level" 
-                         min="0" max="40" value="2" step="1">
-                    </div>
-
+                    <label for="experience_level" class="form-label">Niveau sportif</label>
+                    <select class="form-select" id="experience_level" name="Experience_Level">
+                        <option value="Beginner">Débutant</option>
+                        <option value="Intermediate">Intermédiaire</option>
+                        <option value="Advanced">Avancé</option>
+                    </select>
+                </div>
 
                 <!-- BMI -->
                 <div class="mb-4">
-                    <label for="bmi" class="form-label">IMC (BMI)</label>
-                    <input type="number" step="0.01" class="form-control" id="bmi" name="BMI">
+                    <label for="bmi" class="form-label">Indice de Masse Corporelle (IMC)</label>
+                    <input type="number" step="0.1" class="form-control" id="bmi" name="BMI" value="24.2">
                 </div>
 
-                <!-- Submit -->
-                <button type="submit" class="btn btn-primary col-12">Prédire</button>
+                <button type="submit" class="btn btn-primary col-12">Prédire les Calories Brûlées</button>
 
             </form>
         </div>
@@ -116,5 +117,49 @@
 </div>
 
 <script src="{% static 'js/form.js' %}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // définir les min/max de tous les champs
+    const limits = {
+        age: {min: 10, max: 90},
+        weight: {min: 30, max: 200},
+        height: {min: 1.30, max: 2.20},
+        max_bpm: {min: 50, max: 220},
+        avg_bpm: {min: 40, max: 200},
+        rest_bpm: {min: 35, max: 120},
+        session_duration: {min: 0.1, max: 5},
+        fat_percentage: {min: 5, max: 60},
+        water_intake: {min: 0.5, max: 10},
+        workout_frequency: {min: 1, max: 7},
+        bmi: {min: 10, max: 60},
+    };
+
+    // Fonction qui affiche l'erreur
+    function attachValidation(id) {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        const error = document.createElement("p");
+        error.style.color = "red";
+        error.style.fontSize = "0.9em";
+        error.style.marginTop = "5px";
+        input.parentNode.appendChild(error);
+
+        input.addEventListener("input", function () {
+            const value = parseFloat(input.value);
+            const {min, max} = limits[id];
+
+            if (value < min || value > max) {
+                error.textContent = `La valeur doit être entre ${min} et ${max}.`;
+            } else {
+                error.textContent = "";
+            }
+        });
+    }
+
+    // Appliquer la validation à tous les champs définis
+    Object.keys(limits).forEach(id => attachValidation(id));
+});
+</script>
 
 {% include "includes/footer.html" %}
